@@ -29,6 +29,6 @@ public class PlayerInputEvents : MonoBehaviour
     {
         if (!context.performed) return;
 
-        GetComponent<Player>().characterClass.DoAttack();
+        GetComponent<Player>().DoAttack();
     }
 }

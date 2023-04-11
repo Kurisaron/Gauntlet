@@ -13,8 +13,6 @@ public class CharacterClass : ScriptableObject, ICharacter
     [SerializeField, Range(0, 4)]
     private float magic;
     [SerializeField, Range(0, 4)]
-    private float health;
-    [SerializeField, Range(0, 4)]
     private float armor;
     [SerializeField, Range(0, 4)]
     private float shotPower;
@@ -38,15 +36,6 @@ public class CharacterClass : ScriptableObject, ICharacter
         set
         {
             magic = value;
-        }
-    }
-
-    public float Health
-    {
-        get => health;
-        set
-        {
-            health = value;
         }
     }
 

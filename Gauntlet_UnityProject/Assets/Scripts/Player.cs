@@ -8,6 +8,10 @@ public class Player : MonoBehaviour
     public CharacterClass characterClass;
     public List<Upgrade> upgrades;
 
+    [Header("Health")]
+    public int currentHealth;
+    public int startingHealth = 600;
+
     // PROPERTIES
     public float MeleePower
     {
@@ -65,6 +69,30 @@ public class Player : MonoBehaviour
         }
     }
 
+    // UNITY FUNCTIONS
+    private void OnEnable()
+    {
+        currentHealth = startingHealth;
+        StartCoroutine(HealthDecay());
+    }
+
+    // ATTACKS
+    public void DoAttack() => characterClass.DoAttack();
+
+    public void UsePotion()
+    {
+
+    }
+
+    // HEALTH DECAY
+    private IEnumerator HealthDecay()
+    {
+        while(gameObject.activeInHierarchy)
+        {
+            currentHealth -= 1;
+            yield return new WaitForSeconds(1);
+        }
+    }
 
     // SUM FUNCTIONS
     private float SumUpgradesMeleePower()
