@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     // VARIABLES
     public CharacterClass characterClass;
-    public List<Upgrade> upgrades;
+    public List<Upgrade> upgrades = new List<Upgrade>();
 
     [Header("Health")]
     public int currentHealth;
@@ -28,15 +28,7 @@ public class Player : MonoBehaviour
             return characterClass.Magic + SumUpgradesMagic();
         }
     }
-
-    public float Health
-    {
-        get
-        {
-            return characterClass.Health;
-        }
-    }
-
+    
     public float Armor
     {
         get
@@ -98,6 +90,9 @@ public class Player : MonoBehaviour
     private float SumUpgradesMeleePower()
     {
         float sum = 0.0f;
+
+        if (upgrades == null) return sum;
+
         foreach(Upgrade upgrade in upgrades)
         {
             sum += upgrade.MeleePower;
@@ -108,6 +103,10 @@ public class Player : MonoBehaviour
     private float SumUpgradesMagic()
     {
         float sum = 0.0f;
+
+        if (upgrades == null) return sum;
+
+
         foreach (Upgrade upgrade in upgrades)
         {
             sum += upgrade.Magic;
@@ -118,6 +117,10 @@ public class Player : MonoBehaviour
     private float SumUpgradesArmor()
     {
         float sum = 0.0f;
+
+        if (upgrades == null) return sum;
+
+
         foreach (Upgrade upgrade in upgrades)
         {
             sum += upgrade.Armor;
@@ -128,6 +131,10 @@ public class Player : MonoBehaviour
     private float SumUpgradesShotPower()
     {
         float sum = 0.0f;
+
+        if (upgrades == null) return sum;
+
+
         foreach (Upgrade upgrade in upgrades)
         {
             sum += upgrade.ShotPower;
@@ -138,6 +145,10 @@ public class Player : MonoBehaviour
     private float SumUpgradesShotSpeed()
     {
         float sum = 0.0f;
+
+        if (upgrades == null) return sum;
+
+
         foreach (Upgrade upgrade in upgrades)
         {
             sum += upgrade.ShotSpeed;
@@ -148,6 +159,10 @@ public class Player : MonoBehaviour
     private float SumUpgradesMoveSpeed()
     {
         float sum = 0.0f;
+
+        if (upgrades == null) return sum;
+
+
         foreach (Upgrade upgrade in upgrades)
         {
             sum += upgrade.MoveSpeed;

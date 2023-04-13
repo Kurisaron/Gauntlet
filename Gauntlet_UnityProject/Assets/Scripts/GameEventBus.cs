@@ -12,12 +12,14 @@ public enum GameEvent
     LevelFinished,
     GameOver,
     AddHealth,
-    ScoreAdded
+    ScoreAdded,
+    PlayerAdded,
+    PlayerLeft
 }
 
-public class GameEventBus : MonoBehaviour
+public class GameEventBus
 {
-    private static readonly IDictionary<GameEvent, UnityEvent> gameEvents;
+    private static readonly IDictionary<GameEvent, UnityEvent> gameEvents = new Dictionary<GameEvent, UnityEvent>();
 
     public static void Subscribe(GameEvent eventType, UnityAction action)
     {
@@ -37,6 +39,21 @@ public class GameEventBus : MonoBehaviour
 
     public static void Unsubscribe(GameEvent gameEvent, UnityAction action)
     {
+        UnityEvent thisEvent;
 
+        if(gameEvents.TryGetValue(gameEvent, out thisEvent))
+        {
+            thisEvent.RemoveListener(action);
+        }
+    }
+
+    public static void Publish(GameEvent gameEvent)
+    {
+        UnityEvent thisEvent;
+
+        if (gameEvents.TryGetValue(gameEvent, out thisEvent))
+        {
+            thisEvent.Invoke();
+        }
     }
 }
