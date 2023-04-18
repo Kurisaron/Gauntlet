@@ -1,26 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class DoorManager : MonoBehaviour
+public class Wall : MonoBehaviour
 {
-    public float startingTime = 18; //in seconds
-    public float timeCheck; //in seconds
+    [SerializeField] private float startingTime = 10; // in seconds
+    [SerializeField] private float timeCheck;
+    [SerializeField] private GameObject exitObstacle;
 
     private void OnEnable()
     {
         timeCheck = startingTime;
-        //TO-DO:
-        // figure out a way to check if a player is in combat (maybe use event bus or a bool for that)
-
-        //StartCoroutine(Countdown());
+        StartCoroutine(Countdown());
     }
 
     public IEnumerator Countdown()
     {
-             
-        while (true)
+        while (timeCheck >= 0)
         {
             Debug.Log("Time:" + timeCheck);
             if (Input.anyKey) //if input is detected, timeCheck = startingTime (resetting the Countdown)
@@ -32,12 +28,11 @@ public class DoorManager : MonoBehaviour
                 timeCheck--;
             }
             yield return new WaitForSeconds(1);
-
-            /*if(timeCheck <= 0)
-            {
-                GameEventBus.Publish(GameEvent.DoorOpened);
-                GameEventBus.Unsubscribe(GameEvent.DoorOpened, );
-            }*/
         }
+        this.gameObject.SetActive(false);
+        //TO-DO:
+        //replace wall with the exit obstacle
+
+        GameObject exitObstacleClone = Instantiate(exitObstacle, transform.position + Vector3.down, transform.rotation);
     }
 }
