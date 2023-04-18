@@ -8,9 +8,9 @@ public class ExitObstacle : MonoBehaviour
     {
         if(collision.gameObject.GetComponent<Player>())
         {
-            this.gameObject.SetActive(false);
-            //TO-DO:
-            //add in the level change code here (we could probably use the level finished event bus enum here)
+            this.gameObject.SetActive(false); //this line is just here to make sure the code is running
+
+            GameEventBus.Publish(GameEvent.LevelFinished); //the level changing code will be in the level manager, right?
         }
     }
 }

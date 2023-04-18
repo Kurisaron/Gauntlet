@@ -18,7 +18,7 @@ public class Wall : MonoBehaviour
     {
         while (timeCheck >= 0)
         {
-            Debug.Log("Time:" + timeCheck);
+            //Debug.Log("Time:" + timeCheck);
             if (Input.anyKey) //if input is detected, timeCheck = startingTime (resetting the Countdown)
             {
                 timeCheck = startingTime;
@@ -30,8 +30,6 @@ public class Wall : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
         this.gameObject.SetActive(false);
-        //TO-DO:
-        //replace wall with the exit obstacle
 
         GameObject exitObstacleClone = Instantiate(exitObstacle, transform.position + Vector3.down, transform.rotation);
     }

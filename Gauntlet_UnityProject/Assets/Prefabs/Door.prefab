@@ -121,5 +121,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286a1cf3a38863a4b9e8e998ee2a0409, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingTime: 180
-  timeCheck: 180
+  startingTime: 18
+  timeCheck: 0
