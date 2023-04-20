@@ -6,6 +6,9 @@ public class Player : MonoBehaviour
 {
     // VARIABLES
     public CharacterClass characterClass;
+
+    public CharacterClass[] classOptions;
+
     public List<Upgrade> upgrades = new List<Upgrade>();
 
     [Header("Health")]
@@ -71,7 +74,25 @@ public class Player : MonoBehaviour
     }
 
     // ATTACKS
-    public void DoAttack() => characterClass.DoAttack();
+    public void DoAttack()
+    {
+        StartCoroutine(TestAttackRoutine(Instantiate(characterClass.ProjectilePrefab, transform)));
+    }
+
+    private IEnumerator TestAttackRoutine(GameObject shot)
+    {
+        shot.transform.parent = null;
+        float timeAlive = 0.0f;
+
+        while (timeAlive < 3.0f)
+        {
+            shot.transform.position += shot.transform.forward * Time.deltaTime * 10.0f;
+            timeAlive += Time.deltaTime;
+            yield return null;
+        }
+
+        Destroy(shot);
+    }
 
     public void UsePotion()
     {

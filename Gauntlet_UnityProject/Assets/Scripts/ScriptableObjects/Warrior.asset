@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Warrior
   m_EditorClassIdentifier: 
   _class: 0
-  characterPrefab: {fileID: 0}
+  shotPrefab: {fileID: 6132790479528633851, guid: a18d822534a747a47a9b99e12e905123, type: 3}
   meleePower: 4
   magic: 0.977
-  health: 4
   armor: 2.787
   shotPower: 4
   shotSpeed: 1.037

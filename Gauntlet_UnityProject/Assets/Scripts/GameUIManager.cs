@@ -27,7 +27,10 @@ public class GameUIManager : Singleton<GameUIManager>
 
     public void EnableContainer(int index) => playerContainers[index].frame.SetActive(true);
 
-    public void DisableContainer(int index) => playerContainers[index].frame.SetActive(false);
+    public void DisableContainer(int index)
+    {
+        if (playerContainers[index] != null) playerContainers[index].frame.SetActive(false);
+    }
 
     // CLASSES
     [Serializable]

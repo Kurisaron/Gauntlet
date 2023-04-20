@@ -39,6 +39,9 @@ public class GameManager : Singleton<GameManager>
     {
         // TO-DO: Make adjustments to player, let them choose class, etc.
 
+        // Open class selection key in UI
+        // Put new player's input into class selection state
+
         // Put new player into the first empty spot of the local array
         int index = GetFirstEmptyIndex();
         players[index] = playerInput.gameObject.GetComponent<Player>();
@@ -81,5 +84,12 @@ public class GameManager : Singleton<GameManager>
     public int GetPlayerIndex(Player playerToFind)
     {
         return Array.FindIndex(players, player => player == playerToFind);
+    }
+
+    public bool AnyPlayers()
+    {
+        Player myPlayer = Array.Find(players, player => player != null);
+
+        return myPlayer != null;
     }
  }
