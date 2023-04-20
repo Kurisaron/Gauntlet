@@ -15,7 +15,7 @@ public class Door : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision) //remember to add in a thing for if a player has a key
     {
-        if (collision.gameObject.GetComponent<Player>()) this.gameObject.SetActive(false);
+        if (collision.gameObject.GetComponent<Player>() /* && if player has key in inventory*/) this.gameObject.SetActive(false);
     }
 
     private void Unlock() => this.gameObject.SetActive(false);

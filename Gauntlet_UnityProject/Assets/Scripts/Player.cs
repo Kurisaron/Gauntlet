@@ -12,6 +12,8 @@ public class Player : MonoBehaviour
     public int currentHealth;
     public int startingHealth = 600;
 
+    public int score;
+
     // PROPERTIES
     public float MeleePower
     {

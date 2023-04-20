@@ -11,9 +11,12 @@ public class DoorManager : MonoBehaviour
     private void OnEnable()
     {
         timeCheck = startingTime;
-        //TO-DO:
-        //find a way to check if the player is in combat
-        //find a way to check if player has keys in inventory
+
+        /*TO-DO:
+         * find a way to check if the player is in combat
+         * find a way to check if player has keys in inventory
+         * if there are keys in the inventory, set startingTime to 36 seconds
+         */
 
         StartCoroutine(Countdown());
     }
