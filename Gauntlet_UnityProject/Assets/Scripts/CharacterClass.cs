@@ -6,7 +6,10 @@ using UnityEngine;
 public class CharacterClass : ScriptableObject, ICharacter
 {
     public ClassEnum _class;
-    public GameObject characterPrefab;
+    //[SerializeField]
+    //private GameObject characterPrefab;
+    [SerializeField]
+    private GameObject shotPrefab;
 
     [SerializeField, Range(0,4)]
     private float meleePower;
@@ -75,49 +78,8 @@ public class CharacterClass : ScriptableObject, ICharacter
         }
     }
 
-
-    public void DoAttack()
+    public GameObject ProjectilePrefab
     {
-        switch (_class)
-        {
-            case ClassEnum.Warrior:
-                WarriorAttack();
-                break;
-            case ClassEnum.Valkyrie:
-                ValkyrieAttack();
-                break;
-            case ClassEnum.Wizard:
-                WizardAttack();
-                break;
-            case ClassEnum.Elf:
-                ElfAttack();
-                break;
-            default:
-                Debug.LogError("Class enum was invalid. You should not be here.");
-                _class = ClassEnum.Warrior;
-                DoAttack();
-                break;
-        }
+        get => shotPrefab;
     }
-
-    private void WarriorAttack()
-    {
-        Debug.Log("Warrior attack");
-    }
-
-    private void ValkyrieAttack()
-    {
-        Debug.Log("Valkyrie attack");
-    }
-
-    private void WizardAttack()
-    {
-        Debug.Log("Wizard attack");
-    }
-
-    private void ElfAttack()
-    {
-        Debug.Log("Elf attack");
-    }
-
 }

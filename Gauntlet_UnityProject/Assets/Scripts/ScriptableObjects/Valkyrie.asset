@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Valkyrie
   m_EditorClassIdentifier: 
   _class: 1
-  characterPrefab: {fileID: 0}
+  shotPrefab: {fileID: 2328193415126940464, guid: e92d93fb8654ada4a9fcaafc2c6ab519, type: 3}
   meleePower: 3.085
   magic: 2.18
-  health: 4
   armor: 4
   shotPower: 3.085
   shotSpeed: 3.085

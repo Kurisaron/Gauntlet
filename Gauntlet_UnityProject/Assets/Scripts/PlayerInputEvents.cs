@@ -9,6 +9,8 @@ public class PlayerInputEvents : MonoBehaviour
     private float speed = 10f;
     public Player player;
 
+    private bool classSelected = false;
+
     private void Awake()
     {
         player = GetComponent<Player>();
@@ -17,11 +19,20 @@ public class PlayerInputEvents : MonoBehaviour
     private void Update()
     {
         transform.position += new Vector3(moveDirection.x, 0, moveDirection.y) * speed * player.MoveSpeed * Time.deltaTime;
+        transform.LookAt(transform.position + new Vector3(moveDirection.x, 0, moveDirection.y), Vector3.up);
     }
 
     public void Move(InputAction.CallbackContext context)
     {
+        if (!classSelected) return;
+        
         moveDirection = context.ReadValue<Vector2>();
+
+    }
+
+    public void SelectWarrior(InputAction.CallbackContext context)
+    {
+        if (classSelected || !context.performed) return;
 
     }
 

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: Wizard
   m_EditorClassIdentifier: 
   _class: 2
-  characterPrefab: {fileID: 0}
+  shotPrefab: {fileID: 7040587827806305602, guid: 24b118e47ed78f745a2119f04ad98353, type: 3}
   meleePower: 0.936
   magic: 4
-  health: 4
   armor: 0
   shotPower: 4
   shotSpeed: 3.359
