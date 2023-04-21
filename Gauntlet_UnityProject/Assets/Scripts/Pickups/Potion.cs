@@ -8,7 +8,7 @@ public class Potion : Pickup
 
     private void OnEnable()
     {
-        Color orange = new Color(255, 165, 0, 255);
+        Color orange = new Color(1, 165f/255f, 0, 1);
 
         if (!isDestructible) this.gameObject.GetComponent<Renderer>().material.color = orange; //sets the material color to orange
         GameEventBus.Subscribe(GameEvent.ShotPotion, Explode);
