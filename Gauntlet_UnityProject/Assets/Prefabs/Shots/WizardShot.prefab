@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7040587827806305601}
   m_Layer: 0
   m_Name: WizardShot
-  m_TagString: Untagged
+  m_TagString: projectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

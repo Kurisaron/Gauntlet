@@ -9,7 +9,7 @@ public class PlayerInputEvents : MonoBehaviour
     private float speed = 10f;
     public Player player;
 
-    private bool classSelected = false;
+    [SerializeField] private bool classSelected = false;
 
     private void Awake()
     {
