@@ -201,6 +201,70 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 3ccc7f8a-b343-462c-82a0-4b328c17f673
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1424847329723050173}
+        m_TargetAssemblyTypeName: PlayerInputEvents, Assembly-CSharp
+        m_MethodName: SelectWarrior
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f324d630-cca7-43d3-9f8f-9714c0ef5d5a
+    m_ActionName: Player/Select Warrior[/Keyboard/upArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1424847329723050173}
+        m_TargetAssemblyTypeName: PlayerInputEvents, Assembly-CSharp
+        m_MethodName: SelectWizard
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2264efa5-d8db-4bf2-93f7-a5f84fc77033
+    m_ActionName: Player/Select Wizard[/Keyboard/rightArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1424847329723050173}
+        m_TargetAssemblyTypeName: PlayerInputEvents, Assembly-CSharp
+        m_MethodName: SelectValkyrie
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 9f4b6087-433e-46db-8081-2e1ac3a8d89c
+    m_ActionName: Player/Select Valkyrie[/Keyboard/downArrow]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1424847329723050173}
+        m_TargetAssemblyTypeName: PlayerInputEvents, Assembly-CSharp
+        m_MethodName: SelectElf
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: ee55e659-32c4-4629-bf5e-c90c2c0061e1
+    m_ActionName: Player/Select Elf[/Keyboard/leftArrow]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

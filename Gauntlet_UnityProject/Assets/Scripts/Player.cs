@@ -7,8 +7,6 @@ public class Player : MonoBehaviour
     // VARIABLES
     public CharacterClass characterClass;
 
-    public CharacterClass[] classOptions;
-
     public List<Upgrade> upgrades = new List<Upgrade>();
 
     [Header("Health")]

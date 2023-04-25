@@ -6,8 +6,8 @@ using UnityEngine;
 public class CharacterClass : ScriptableObject, ICharacter
 {
     public ClassEnum _class;
-    //[SerializeField]
-    //private GameObject characterPrefab;
+    [SerializeField]
+    private GameObject characterPrefab;
     [SerializeField]
     private GameObject shotPrefab;
 
@@ -78,8 +78,14 @@ public class CharacterClass : ScriptableObject, ICharacter
         }
     }
 
+    public GameObject CharacterPrefab
+    {
+        get => characterPrefab;
+    }
+
     public GameObject ProjectilePrefab
     {
         get => shotPrefab;
     }
+
 }
