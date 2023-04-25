@@ -9,7 +9,10 @@ using UnityEngine.InputSystem;
 public class GameManager : Singleton<GameManager>
 {
     public LevelManager levelManager;
+    [HideInInspector]
     public Player[] players = new Player[4];
+
+    public CharacterClass[] classes;
 
     public override void Awake()
     {

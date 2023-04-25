@@ -328,6 +328,11 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  classes:
+  - {fileID: 11400000, guid: f6ab4fd16f547874fb44b58adff311d8, type: 2}
+  - {fileID: 11400000, guid: ce3bf9d69da50094099751aaf497eb43, type: 2}
+  - {fileID: 11400000, guid: 38586da16dbaac5499b4f9e254f71669, type: 2}
+  - {fileID: 11400000, guid: 12487c141cb309a4db1b63005bfe6983, type: 2}
 --- !u!114 &125606342 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8138566058019159404, guid: d5799fd1cd7ad3645b5e8d38658b1b9d, type: 3}
