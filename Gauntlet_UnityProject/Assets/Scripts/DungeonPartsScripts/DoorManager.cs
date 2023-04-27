@@ -25,7 +25,7 @@ public class DoorManager : MonoBehaviour
     {
         while (timeCheck >= 0)
         {
-            Debug.Log("Time:" + timeCheck);
+            //Debug.Log("Time:" + timeCheck);
             if (Input.anyKey) //if input is detected, timeCheck = startingTime (resetting the Countdown)
             {
                 timeCheck = startingTime;
