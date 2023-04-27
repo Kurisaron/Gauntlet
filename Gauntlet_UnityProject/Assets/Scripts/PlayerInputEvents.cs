@@ -10,7 +10,12 @@ public class PlayerInputEvents : MonoBehaviour
     private float speed = 10f;
     public Player player;
 
-    [SerializeField] private bool classSelected = false;
+    private bool classSelected = false;
+
+    public bool ClassSelected
+    {
+        get { return classSelected; }
+    }
 
     private void Awake()
     {
@@ -85,6 +90,9 @@ public class PlayerInputEvents : MonoBehaviour
                 break;
         }
         GetComponent<Renderer>().material.color = classColor;
+
+        //Debug.Log(Array.FindIndex(GameManager.Instance.players, player => player == gameObject.GetComponent<Player>()).ToString());
+        GameUIManager.Instance.SetClass(Array.FindIndex(GameManager.Instance.players, player => player == gameObject.GetComponent<Player>()), classEnum);
 
         classSelected = true;
     }
