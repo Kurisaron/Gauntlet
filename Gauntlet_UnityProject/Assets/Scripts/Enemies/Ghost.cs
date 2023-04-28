@@ -9,7 +9,7 @@ public class Ghost : Enemy
         damage = level * 10;
     }
 
-    public override void AddScore()
+    public override void AddScore(Player player)
     {
         
     }
@@ -27,7 +27,7 @@ public class Ghost : Enemy
     public override void OnDefeat()
     {
         this.gameObject.SetActive(false);
-        AddScore();
+        //AddScore();
     }
 
 

@@ -6,6 +6,7 @@ public class Death : Enemy
 {
 
     private static int timesTriggered = 0;
+    private bool hitbyPotion; //probably delete this when the potion attacks are implemented, this is kind of just a placeholder
 
     private void OnEnable()
     {
@@ -16,21 +17,26 @@ public class Death : Enemy
     {
         //Move();
     }
-    public override void AddScore()
+    public override void AddScore(Player player)
+    {
+        scoreIncrease = 1;
+
+        if(hitbyPotion == true)
+        {
+            scoreIncrease = BonusScoreIncrease();
+        } 
+
+        player.score += scoreIncrease;
+    }
+
+    private int BonusScoreIncrease()
     {
         List<int> scoreEarnedWhenDefeated = new List<int> { 1000, 2000, 1000, 4000, 2000, 6000, 8000 };
-        /*
-         TO-DO: Cycle the score.
-         * Every time you hit Death with a shot, you cycle the value. By default, it is 1000 points. The full cycle is, starting from default: 1000, 2000, 1000, 4000, 2000, 6000, 8000, and then back to the default 1000.
-         */
-        Debug.Log("this part happened");
-        for (int i = timesTriggered; i < scoreEarnedWhenDefeated.Count; i++)
-        {
-            scoreIncrease = scoreEarnedWhenDefeated[i];
 
-            //if (i > scoreEarnedWhenDefeated.Count) i = 0;
-        }
-        Debug.Log("Score added: " + scoreIncrease);
+        //Debug.Log("Score Earned when defeated: " + scoreEarnedWhenDefeated[timesTriggered]);
+
+        return scoreEarnedWhenDefeated[timesTriggered];
+        
     }
 
     public override void Attack(Player player)
@@ -53,8 +59,9 @@ public class Death : Enemy
 
     public override void OnDefeat()
     {
+        
+        
         this.gameObject.SetActive(false);
-        AddScore();
     }
 
     private IEnumerator DrainHealth(Player player)
@@ -71,24 +78,37 @@ public class Death : Enemy
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.GetComponent<Player>()) StartCoroutine(DrainHealth(collision.gameObject.GetComponent<Player>()));
-
-       
+        if (collision.gameObject.GetComponent<Player>()) StartCoroutine(DrainHealth(collision.gameObject.GetComponent<Player>()));       
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.transform.parent.gameObject.name.Contains("Shot"))
-        {
-            health--;
-            timesTriggered++;
+        if (other.gameObject.transform.parent.name.Contains("Shot"))
+        {          
             if (timesTriggered >= 7) timesTriggered = 0;
 
-            AddScore();
-            
-            //track who shot that projectile so that the correct player is awarded a point
-            //if collision is a potion attack, do ondefeat()
+            BonusScoreIncrease();
+            timesTriggered++;
+
+            //tracks who shot that projectile so that the correct player is awarded a point
+            if (other.gameObject.transform.parent.name.Contains("Elf") && FindObjectOfType<Player>().name.Contains("Elf"))
+            {
+                AddScore(GameObject.Find("Elf").GetComponent<Player>());
+            }
+            if (other.gameObject.transform.parent.name.Contains("Warrior") && FindObjectOfType<Player>().name.Contains("Warrior"))
+            {
+                AddScore(GameObject.Find("Warrior").GetComponent<Player>());
+            }
+            if (other.gameObject.transform.parent.name.Contains("Valkyrie") && FindObjectOfType<Player>().name.Contains("Valkyrie"))
+            {
+                AddScore(GameObject.Find("Valkyrie").GetComponent<Player>());
+            }
+            if (other.gameObject.transform.parent.name.Contains("Wizard") && FindObjectOfType<Player>().name.Contains("Wizard"))
+            {
+                AddScore(GameObject.Find("Wizard").GetComponent<Player>());
+            }
         }
+        //if collision is a potion attack, do ondefeat() and addscore() and make hitbyPotion true so that it applies the bonus score
     }
     private void OnCollisionExit(Collision collision)
     {

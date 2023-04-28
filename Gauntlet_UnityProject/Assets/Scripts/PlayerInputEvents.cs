@@ -41,6 +41,7 @@ public class PlayerInputEvents : MonoBehaviour
         if (classSelected || !context.performed) return;
 
         SelectClass(ClassEnum.Warrior);
+        this.gameObject.name = "Warrior";
     }
 
     public void SelectWizard(InputAction.CallbackContext context)
@@ -48,6 +49,7 @@ public class PlayerInputEvents : MonoBehaviour
         if (classSelected || !context.performed) return;
 
         SelectClass(ClassEnum.Wizard);
+        this.gameObject.name = "Wizard";
     }
 
     public void SelectValkyrie(InputAction.CallbackContext context)
@@ -55,6 +57,7 @@ public class PlayerInputEvents : MonoBehaviour
         if (classSelected || !context.performed) return;
 
         SelectClass(ClassEnum.Valkyrie);
+        this.gameObject.name = "Valkyrie";
     }
 
     public void SelectElf(InputAction.CallbackContext context)
@@ -62,6 +65,7 @@ public class PlayerInputEvents : MonoBehaviour
         if (classSelected || !context.performed) return;
 
         SelectClass(ClassEnum.Elf);
+        this.gameObject.name = "Elf";
     }
 
     private void SelectClass(ClassEnum classEnum)

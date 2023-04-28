@@ -7,13 +7,13 @@ public abstract class Enemy : Foe
     //VARIABLES
     public int damage;
     public float detectionRadius;
-    public float scoreIncrease;
+    public int scoreIncrease;
     public float speed;
 
     //FUNCTIONS
     public abstract void Attack(Player player);
     public abstract void Move();
     public abstract void OnDefeat();
-    public abstract void AddScore();
+    public abstract void AddScore(Player player);
     
 }
