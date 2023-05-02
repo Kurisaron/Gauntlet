@@ -41,7 +41,7 @@ public class PlayerInputEvents : MonoBehaviour
         if (classSelected || !context.performed) return;
 
         SelectClass(ClassEnum.Warrior);
-        this.gameObject.name = "Warrior";
+        gameObject.name = "Warrior";
     }
 
     public void SelectWizard(InputAction.CallbackContext context)
@@ -49,7 +49,7 @@ public class PlayerInputEvents : MonoBehaviour
         if (classSelected || !context.performed) return;
 
         SelectClass(ClassEnum.Wizard);
-        this.gameObject.name = "Wizard";
+        gameObject.name = "Wizard";
     }
 
     public void SelectValkyrie(InputAction.CallbackContext context)
@@ -57,7 +57,7 @@ public class PlayerInputEvents : MonoBehaviour
         if (classSelected || !context.performed) return;
 
         SelectClass(ClassEnum.Valkyrie);
-        this.gameObject.name = "Valkyrie";
+        gameObject.name = "Valkyrie";
     }
 
     public void SelectElf(InputAction.CallbackContext context)
@@ -65,7 +65,7 @@ public class PlayerInputEvents : MonoBehaviour
         if (classSelected || !context.performed) return;
 
         SelectClass(ClassEnum.Elf);
-        this.gameObject.name = "Elf";
+        gameObject.name = "Elf";
     }
 
     private void SelectClass(ClassEnum classEnum)
@@ -73,27 +73,16 @@ public class PlayerInputEvents : MonoBehaviour
         player.characterClass = Array.Find(GameManager.Instance.classes, characterClass => characterClass._class == classEnum);
 
         //GameObject classBody = Instantiate(player.characterClass.CharacterPrefab, transform);
-        Color classColor;
-        switch (classEnum)
+        GetComponent<Renderer>().material.color = classEnum switch
         {
-            case ClassEnum.Warrior:
-                classColor = Color.red;
-                break;
-            case ClassEnum.Valkyrie:
-                classColor = Color.cyan;
-                break;
-            case ClassEnum.Wizard:
-                classColor = Color.blue;
-                break;
-            case ClassEnum.Elf:
-                classColor = Color.green;
-                break;
-            default:
-                classColor = Color.black;
-                Debug.LogWarning("Somehow you broke the game, be rewarded with playing the necromancer.");
-                break;
-        }
-        GetComponent<Renderer>().material.color = classColor;
+            ClassEnum.Warrior => Color.red,
+            ClassEnum.Valkyrie => Color.cyan,
+            ClassEnum.Wizard => Color.blue,
+            ClassEnum.Elf => Color.green,
+            _ => Color.black
+        };
+
+        if (GetComponent<Renderer>().material.color == Color.black) Debug.Log("Your class choice was somehow invalid. For your intrepid behaviour, enjoy playing as the necromancer.");
 
         //Debug.Log(Array.FindIndex(GameManager.Instance.players, player => player == gameObject.GetComponent<Player>()).ToString());
         GameUIManager.Instance.SetClass(Array.FindIndex(GameManager.Instance.players, player => player == gameObject.GetComponent<Player>()), classEnum);
