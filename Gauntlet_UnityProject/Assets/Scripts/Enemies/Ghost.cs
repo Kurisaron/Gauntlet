@@ -9,7 +9,7 @@ public class Ghost : Enemy
         damage = level * 10;
     }
 
-    public override void AddScore(Player player)
+    public override void AddScore(Player player, bool byPotion)
     {
         
     }

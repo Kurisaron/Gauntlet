@@ -14,6 +14,6 @@ public abstract class Enemy : Foe
     public abstract void Attack(Player player);
     public abstract void Move();
     public abstract void OnDefeat();
-    public abstract void AddScore(Player player);
+    public abstract void AddScore(Player player, bool byPotion);
     
 }
