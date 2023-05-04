@@ -55,7 +55,7 @@ public class ObjectPooler : MonoBehaviour
         for (int i = 0; i < pooledObjects.Count; i++)
         {
             //check to see if the item in the list is currently active or not (this is how we know if we're using it or not)
-            if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].name == name)
+            if (!pooledObjects[i].activeInHierarchy && pooledObjects[i].name.Contains(name))
             {
                 //we want to return the first non-active gameObject
                 return pooledObjects[i];
@@ -65,7 +65,7 @@ public class ObjectPooler : MonoBehaviour
         //if we don't have one, so if shouldExpand is true, make a new one and return that, otherwise return null
         foreach (ObjectPoolItem item in itemsToPool)
         {
-            if (item.objectToPool.name == name)
+            if (item.objectToPool.name.Contains(name))
             {
                 if (item.shouldExpand)
                 {

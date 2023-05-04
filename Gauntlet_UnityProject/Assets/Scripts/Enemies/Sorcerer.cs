@@ -2,53 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ghost : Enemy
+public class Sorcerer : Enemy
 {
     private void Awake()
     {
-        triggerAction = GhostTrigger;
-    }
+        triggerAction = SorcererTrigger;
 
-    private void OnEnable()
-    {
-        damage = level * 10;
-        health = level;
-        speed = level * 0.75f;
-        scoreIncrease = level * 10;
-    }
-
-    private void Update()
-    {
-        Move();
+        StartCoroutine(BecomeInvisible());
     }
 
     public override void Attack(Player player)
     {
-        player.currentHealth -= damage;
+        
     }
 
     public override void Move()
     {
-        //transform.position += speed * Time.deltaTime * Vector3.forward;
+        
     }
 
     public override void OnDefeat()
     {
-        this.gameObject.SetActive(false);
+        
     }
 
-
-    private void OnCollisionEnter(Collision collision)
+    private IEnumerator BecomeInvisible()
     {
-        if (collision.gameObject.GetComponent<Player>())
+        Color sorcererColor = GetComponent<Renderer>().material.color;
+        while (true)
         {
-            Attack(collision.gameObject.GetComponent<Player>());
-            OnDefeat();
+            Debug.Log("this happened");
+            GetComponent<Collider>().enabled = false;
+            sorcererColor.a = 100;
+            GetComponent<Renderer>().material.color = sorcererColor;
+            yield return new WaitForSeconds(2);
+
+            GetComponent<Collider>().enabled = true;
+            sorcererColor.a = 255;
+            GetComponent<Renderer>().material.color = sorcererColor;
         }
     }
 
-
-    private void GhostTrigger(Collider other)
+    private void SorcererTrigger(Collider other)
     {
         if (other.gameObject.transform.parent.name.Contains("Shot"))
         {

@@ -21,6 +21,17 @@ public class Foe : MonoBehaviour
     //VARIABLES
     public float health;
     public int level;
+    public int scoreIncrease;
     public EnemyType enemyType;
-    public Action triggerAction;
+    public Action<Collider> triggerAction;
+
+    public void OnTriggerEnter(Collider other)
+    {
+        if (triggerAction != null) triggerAction(other);
+    }
+
+    public void AddScore(Player player, int score)
+    {
+        player.score += score;
+    }
 }

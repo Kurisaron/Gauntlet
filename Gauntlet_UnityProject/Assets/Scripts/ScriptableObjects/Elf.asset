@@ -13,10 +13,11 @@ MonoBehaviour:
   m_Name: Elf
   m_EditorClassIdentifier: 
   _class: 3
+  characterPrefab: {fileID: 0}
   shotPrefab: {fileID: 5353327364123226189, guid: 564f37836715d45479138d763140f4df, type: 3}
-  meleePower: 0.822
+  meleePower: 1
   magic: 4
-  armor: 2.091
-  shotPower: 2.484
-  shotSpeed: 2.484
+  armor: 2
+  shotPower: 2.5
+  shotSpeed: 2.5
   moveSpeed: 4

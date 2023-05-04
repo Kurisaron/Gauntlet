@@ -8,6 +8,9 @@ public class Generator : Foe
 
     private void Start()
     {
+        health = level;
+
+
         enemyObjectList.Add(enemyType);
         StartCoroutine(SpawnEnemy(enemyType));
     }
@@ -25,11 +28,21 @@ public class Generator : Foe
                 {
                     enemyToSpawn.transform.position = transform.position;
                     enemyToSpawn.transform.rotation = transform.rotation;
+                    enemyToSpawn.GetComponent<Enemy>().level = level;
                     enemyToSpawn.SetActive(true);
                 }
             }
 
             yield return new WaitForSeconds(1);
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.transform.parent.name.Contains("Shot"))
+        {
+            health--;
+            level--;
         }
     }
 }

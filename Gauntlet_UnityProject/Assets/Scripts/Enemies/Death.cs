@@ -7,16 +7,16 @@ public class Death : Enemy
 
     private static int timesTriggered = 0;
 
-    private void OnEnable()
+    private void Awake()
     {
-
+        triggerAction = DeathTrigger;
     }
 
     private void Update()
     {
         Move();
     }
-    public override void AddScore(Player player , bool hitByPotion)
+    public void AddScore(Player player, bool hitByPotion)
     {
         scoreIncrease = 1;
 
@@ -43,7 +43,7 @@ public class Death : Enemy
 
     public override void Move()
     {
-        transform.position += speed * Time.deltaTime * Vector3.forward;
+        //transform.position += speed * Time.deltaTime * Vector3.forward;
 
         /*float distance;
 
@@ -76,10 +76,10 @@ public class Death : Enemy
         if (collision.gameObject.GetComponent<Player>()) StartCoroutine(DrainHealth(collision.gameObject.GetComponent<Player>()));       
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void DeathTrigger(Collider other)
     {
         if (other.gameObject.transform.parent.name.Contains("Shot"))
-        {          
+        {
             timesTriggered++;
             if (timesTriggered >= 7) timesTriggered = 0;
 
@@ -87,18 +87,22 @@ public class Death : Enemy
             if (other.gameObject.transform.parent.name.Contains("Elf") && FindObjectOfType<Player>().name.Contains("Elf"))
             {
                 AddScore(GameObject.Find("Elf").GetComponent<Player>(), false);
+                other.gameObject.SetActive(false);
             }
             if (other.gameObject.transform.parent.name.Contains("Warrior") && FindObjectOfType<Player>().name.Contains("Warrior"))
             {
                 AddScore(GameObject.Find("Warrior").GetComponent<Player>(), false);
+                other.gameObject.SetActive(false);
             }
             if (other.gameObject.transform.parent.name.Contains("Valkyrie") && FindObjectOfType<Player>().name.Contains("Valkyrie"))
             {
                 AddScore(GameObject.Find("Valkyrie").GetComponent<Player>(), false);
+                other.gameObject.SetActive(false);
             }
             if (other.gameObject.transform.parent.name.Contains("Wizard") && FindObjectOfType<Player>().name.Contains("Wizard"))
             {
                 AddScore(GameObject.Find("Wizard").GetComponent<Player>(), false);
+                other.gameObject.SetActive(false);
             }
         }
         //if collision is a potion attack, do ondefeat() and addscore() and make hitbyPotion true so that it applies the bonus score
