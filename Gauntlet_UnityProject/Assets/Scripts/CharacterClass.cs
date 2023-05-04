@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -88,4 +89,37 @@ public class CharacterClass : ScriptableObject, ICharacter
         get => shotPrefab;
     }
 
+
+    // CLASSES
+    [Serializable]
+    public class ShotStats
+    {
+        [Range(0, 4), Tooltip("Amount of damage each shot deals to enemies")]
+        public float shotPower;
+        [Range(0, 4), Tooltip("Movement speed of each shot")]
+        public float shotSpeed;
+        [Range(0, 4), Tooltip("Size of the shot's collider")]
+        public float sizeMultiplier;
+    }
+
+    [Serializable]
+    public class MagicStats
+    {
+        [Range(0, 4), Tooltip("Damage dealt to most monsters by a potion attack")]
+        public float magicAgainstMonsters;
+        [Range(0, 4), Tooltip("Damage dealt to generators by a potion attack")]
+        public float magicAgainstGenerators;
+        [Range(0, 4), Tooltip("Damage dealt to most monsters by shooting a potion")]
+        public float potionShotAgainstMonsters;
+        [Range(0, 4), Tooltip("Damage dealt to generators by shooting a potion")]
+        public float potionShotAgainstGenerators;
+    }
+
+    [Serializable]
+    public class MeleeStats
+    {
+        [Range(0, 4), Tooltip("Damage dealt to monsters by a melee attack")]
+        public float magicAgainstMonsters;
+
+    }
 }
