@@ -11,10 +11,23 @@ public class Ghost : Enemy
 
     private void OnEnable()
     {
-        damage = level * 10;
+        /*damage = level * 10;
         health = level;
         speed = level * 0.75f;
         scoreIncrease = level * 10;
+
+        Color ghostColor = new Color((165 + (30 * level)) / 255, (165 + (30 * level)) / 255, (165 + (30 * level)) / 255, 1);
+
+        GetComponent<Renderer>().material.color = ghostColor;*/
+
+        AssignStats();
+    }
+
+    public override void AssignStats()
+    {
+        base.AssignStats();
+
+        damage = level * 10;
     }
 
     private void Update()
@@ -30,11 +43,6 @@ public class Ghost : Enemy
     public override void Move()
     {
         //transform.position += speed * Time.deltaTime * Vector3.forward;
-    }
-
-    public override void OnDefeat()
-    {
-        this.gameObject.SetActive(false);
     }
 
 

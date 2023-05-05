@@ -25,6 +25,11 @@ public class Foe : MonoBehaviour
     public EnemyType enemyType;
     public Action<Collider> triggerAction;
 
+    //material color values
+    public float matRed;
+    public float matGreen;
+    public float matBlue;    
+
     public void OnTriggerEnter(Collider other)
     {
         if (triggerAction != null) triggerAction(other);

@@ -8,20 +8,17 @@ public class Sorcerer : Enemy
     {
         triggerAction = SorcererTrigger;
 
+        AssignStats();
+
         StartCoroutine(BecomeInvisible());
     }
 
     public override void Attack(Player player)
     {
-        
+        player.currentHealth -= damage;
     }
 
     public override void Move()
-    {
-        
-    }
-
-    public override void OnDefeat()
     {
         
     }
@@ -31,14 +28,13 @@ public class Sorcerer : Enemy
         Color sorcererColor = GetComponent<Renderer>().material.color;
         while (true)
         {
-            Debug.Log("this happened");
+            
             GetComponent<Collider>().enabled = false;
-            sorcererColor.a = 100;
+            sorcererColor.a = 100f/255f;
             GetComponent<Renderer>().material.color = sorcererColor;
-            yield return new WaitForSeconds(2);
-
+            yield return new WaitForSeconds(1);
             GetComponent<Collider>().enabled = true;
-            sorcererColor.a = 255;
+            sorcererColor.a = 255/255f;
             GetComponent<Renderer>().material.color = sorcererColor;
         }
     }

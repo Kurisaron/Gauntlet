@@ -54,11 +54,6 @@ public class Death : Enemy
 
     }
 
-    public override void OnDefeat()
-    {               
-        this.gameObject.SetActive(false);
-    }
-
     private IEnumerator DrainHealth(Player player)
     {
         while (health > 0)

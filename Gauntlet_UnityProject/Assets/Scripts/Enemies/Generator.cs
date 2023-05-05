@@ -6,6 +6,11 @@ public class Generator : Foe
 {
     private List<EnemyType> enemyObjectList = new List<EnemyType>();
 
+
+    private void Awake()
+    {
+        triggerAction = GeneratorTrigger;
+    }
     private void Start()
     {
         health = level;
@@ -37,7 +42,7 @@ public class Generator : Foe
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void GeneratorTrigger(Collider other)
     {
         if (other.gameObject.transform.parent.name.Contains("Shot"))
         {
