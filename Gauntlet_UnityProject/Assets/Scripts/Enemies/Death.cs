@@ -36,11 +36,6 @@ public class Death : Enemy
         
     }
 
-    public override void Attack(Player player)
-    {
-        //Does Death actually use an attack?
-    }
-
     public override void Move()
     {
         //transform.position += speed * Time.deltaTime * Vector3.forward;
@@ -58,7 +53,7 @@ public class Death : Enemy
     {
         while (health > 0)
         {
-            player.currentHealth -= damage; //drains the player's health
+            Attack(player);
             
             health--; //Death also drains its own health when it's in contact with the player
             Debug.Log("Death's health: "+ health);

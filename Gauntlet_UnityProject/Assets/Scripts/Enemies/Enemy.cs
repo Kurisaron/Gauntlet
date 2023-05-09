@@ -11,7 +11,7 @@ public abstract class Enemy : Foe
     public float speed;
 
     //FUNCTIONS
-    public abstract void Attack(Player player);
+    public void Attack(Player player) => player.currentHealth -= damage;
     public abstract void Move();
     public void OnDefeat() => gameObject.SetActive(false);
 

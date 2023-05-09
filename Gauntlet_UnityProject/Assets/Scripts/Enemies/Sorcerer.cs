@@ -7,15 +7,13 @@ public class Sorcerer : Enemy
     private void Awake()
     {
         triggerAction = SorcererTrigger;
+    }
 
+    private void OnEnable()
+    {
         AssignStats();
 
         StartCoroutine(BecomeInvisible());
-    }
-
-    public override void Attack(Player player)
-    {
-        player.currentHealth -= damage;
     }
 
     public override void Move()
@@ -34,7 +32,7 @@ public class Sorcerer : Enemy
             GetComponent<Renderer>().material.color = sorcererColor;
             yield return new WaitForSeconds(1);
             GetComponent<Collider>().enabled = true;
-            sorcererColor.a = 255/255f;
+            sorcererColor.a = 255f/255f;
             GetComponent<Renderer>().material.color = sorcererColor;
         }
     }
@@ -44,7 +42,7 @@ public class Sorcerer : Enemy
         if (other.gameObject.transform.parent.name.Contains("Shot"))
         {
             //health - shot power?
-            //also change this so that it accounts for multiple 
+            //also change this so that it accounts for players who have the same class
             //tracks who shot that projectile so that the correct player is awarded a point
             if (other.gameObject.transform.parent.name.Contains("Elf") && FindObjectOfType<Player>().name.Contains("Elf"))
             {
