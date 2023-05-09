@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,6 +9,8 @@ public class Player : MonoBehaviour
     public CharacterClass characterClass;
 
     public List<Upgrade> upgrades = new List<Upgrade>();
+    public int keysHeld;
+    public int potionsHeld;
 
     [Header("Health")]
     public int currentHealth;
@@ -67,6 +70,8 @@ public class Player : MonoBehaviour
     // UNITY FUNCTIONS
     private void OnEnable()
     {
+        //TestInventory();
+        
         currentHealth = startingHealth;
         StartCoroutine(HealthDecay());
     }
@@ -95,6 +100,36 @@ public class Player : MonoBehaviour
     public void UsePotion()
     {
 
+    }
+
+    // INVENTORY
+
+    public void AddUpgrade(Upgrade upgrade) => upgrades.Add(upgrade);
+
+    public void AddItem(string potionORkey)
+    {
+        if (InventoryFull()) return;
+
+        if (potionORkey == "potion") potionsHeld += 1;
+        else keysHeld += 1;
+
+        UpdateInventory();
+    }
+
+    private bool InventoryFull()
+    {
+        return (keysHeld + potionsHeld) >= 12;
+    }
+
+    private void UpdateInventory() => GameUIManager.Instance.UpdateInventory(Array.FindIndex(GameManager.Instance.players, player => player == this));
+
+    private void TestInventory()
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            if (UnityEngine.Random.Range(0, 2) == 0) AddItem("potion");
+            else AddItem("key");
+        }
     }
 
     // HEALTH DECAY

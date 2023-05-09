@@ -519,6 +519,13 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ce3bf9d69da50094099751aaf497eb43, type: 2}
   - {fileID: 11400000, guid: 38586da16dbaac5499b4f9e254f71669, type: 2}
   - {fileID: 11400000, guid: 12487c141cb309a4db1b63005bfe6983, type: 2}
+  upgrades:
+  - {fileID: 11400000, guid: 5f172dbae98e00c498346e14a92d336e, type: 2}
+  - {fileID: 11400000, guid: eed45867ef3a5a34d99937978dd605ab, type: 2}
+  - {fileID: 11400000, guid: 2bd1586cab6caed418f75c1711229378, type: 2}
+  - {fileID: 11400000, guid: 16646056a82bd4f4caf5af7009089c68, type: 2}
+  - {fileID: 11400000, guid: 5f59bbf7ed4d8f043b799a945c2acb3e, type: 2}
+  - {fileID: 11400000, guid: 9bd52f427624c79459f79015dc1629cd, type: 2}
 --- !u!1 &83038532
 GameObject:
   m_ObjectHideFlags: 0
@@ -6787,6 +6794,7 @@ GameObject:
   - component: {fileID: 1968029499}
   - component: {fileID: 1968029498}
   - component: {fileID: 1968029497}
+  - component: {fileID: 1968029500}
   m_Layer: 0
   m_Name: UpgradePotion
   m_TagString: Untagged
@@ -6871,6 +6879,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968029495}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1968029500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968029495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca17a86853eed9048bd956ba5934317a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDestructible: 0
+  upgrade: {fileID: 0}
 --- !u!1 &2049970587
 GameObject:
   m_ObjectHideFlags: 0

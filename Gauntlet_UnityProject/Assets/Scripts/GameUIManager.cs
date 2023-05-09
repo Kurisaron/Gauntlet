@@ -88,6 +88,19 @@ public class GameUIManager : Singleton<GameUIManager>
         if (allCharactersHaveClass == classChoices.activeInHierarchy) classChoices.SetActive(!allCharactersHaveClass);
     }
 
+    public void UpdateInventory(int index)
+    {
+        PlayerStats stats = playerContainers[index];
+        for(int i = 0; i < GameManager.Instance.players[index].keysHeld; i++)
+        {
+            stats.inventoryIndicators[i].color = Color.yellow;
+        }
+        for(int i = 11; i > (11 - GameManager.Instance.players[index].potionsHeld); i--)
+        {
+            stats.inventoryIndicators[i].color = Color.cyan;
+        }
+    }
+
     // CLASSES
     [Serializable]
     public class PlayerStats
@@ -101,8 +114,8 @@ public class GameUIManager : Singleton<GameUIManager>
         private Text healthText;
         [SerializeField]
         private Image[] upgradeIndicators;
-        [SerializeField]
-        private Image[] inventoryIndicators;
+        //[SerializeField]
+        public Image[] inventoryIndicators;
 
         public Text ClassName
         {
@@ -118,5 +131,6 @@ public class GameUIManager : Singleton<GameUIManager>
         {
             get { return healthText; }
         }
+
     }
 }

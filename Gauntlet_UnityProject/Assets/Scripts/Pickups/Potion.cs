@@ -20,9 +20,7 @@ public class Potion : Pickup
 
     public override void OnPickUp(Player player)
     {
-        //TO-DO:
-        //add potion to player inventory
-        //update the UI for the player who picked it up to show that change
+        player.AddItem("potion");
     }
 
     public void Explode()

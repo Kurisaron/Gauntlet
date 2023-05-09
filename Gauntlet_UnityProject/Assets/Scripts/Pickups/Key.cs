@@ -6,8 +6,7 @@ public class Key : Pickup
 {
     public override void OnPickUp(Player player)
     {
-        //TO-DO:
-        //add key to player inventory and update the UI to reflect the change
+        player.AddItem("key");
     }
 
     private void OnCollisionEnter(Collision collision)

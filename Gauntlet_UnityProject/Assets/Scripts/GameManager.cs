@@ -13,6 +13,7 @@ public class GameManager : Singleton<GameManager>
     public Player[] players = new Player[4];
 
     public CharacterClass[] classes;
+    public Upgrade[] upgrades;
 
     public override void Awake()
     {
