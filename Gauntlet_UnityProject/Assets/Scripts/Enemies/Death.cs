@@ -49,16 +49,18 @@ public class Death : Enemy
 
     }
 
-    private IEnumerator DrainHealth(Player player)
+    public override IEnumerator DrainHealth(Player player)
     {
         while (health > 0)
         {
             Attack(player);
             
-            health--; //Death also drains its own health when it's in contact with the player
+            health--; //Death's drain health is different from the others
             Debug.Log("Death's health: "+ health);
             yield return new WaitForSeconds(1);
         }
+
+        if (health <= 0) OnDefeat();
     }
 
     private void OnCollisionEnter(Collision collision)

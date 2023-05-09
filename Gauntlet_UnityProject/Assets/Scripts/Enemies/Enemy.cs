@@ -15,6 +15,19 @@ public abstract class Enemy : Foe
     public abstract void Move();
     public void OnDefeat() => gameObject.SetActive(false);
 
+    public virtual IEnumerator DrainHealth(Player player)
+    {
+        while (health < 0)
+        {
+            Attack(player);
+            health -= player.MeleePower;
+
+            yield return new WaitForSeconds(1.5f);
+        }
+
+        if(health <= 0) OnDefeat();
+    }
+
     public virtual void AssignStats()
     {
         health = level;

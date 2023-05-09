@@ -2,21 +2,58 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grunt : Enemy
+public class Demon : Enemy
 {
+    private List<GameObject> demonProjectiles = new List<GameObject>();
+    [SerializeField] private GameObject demonProjectile;
+
     private void Awake()
     {
-        triggerAction = GruntTrigger;
+        triggerAction = DemonTrigger;
     }
 
     private void OnEnable()
     {
         AssignStats();
+
+        
+    }
+
+    private void Start()
+    {
+        demonProjectiles.Add(demonProjectile);
+        StartCoroutine(ShootProjectile());
     }
 
     public override void Move()
     {
         
+    }
+
+    private IEnumerator ShootProjectile()
+    {
+        while (true)
+        {
+            foreach (GameObject projectile in demonProjectiles)
+            {
+                
+                GameObject shot = ObjectPooler.Instance.GetPooledObject(demonProjectile.name);
+                shot.transform.parent = null;
+                float timeAlive = 0.0f;
+
+                shot.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                
+                shot.SetActive(true);
+                
+                shot.transform.position += 10.0f * Time.deltaTime * shot.transform.forward;
+                timeAlive += Time.deltaTime;
+
+                if (timeAlive >= 2.0f) gameObject.SetActive(false);
+            }
+           
+            yield return new WaitForSeconds(1);
+
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -29,7 +66,7 @@ public class Grunt : Enemy
         StopAllCoroutines();
     }
 
-    private void GruntTrigger(Collider other)
+    private void DemonTrigger(Collider other)
     {
         if (other.gameObject.transform.parent.name.Contains("Shot"))
         {

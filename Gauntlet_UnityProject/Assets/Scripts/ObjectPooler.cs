@@ -29,10 +29,7 @@ public class ObjectPooler : MonoBehaviour
         {
             _instance = this;
         }
-    }
 
-    private void Start()
-    {
         pooledObjects = new List<GameObject>();
 
         foreach (ObjectPoolItem item in itemsToPool)
@@ -45,8 +42,6 @@ public class ObjectPooler : MonoBehaviour
 
             }
         }
-
-
     }
 
     public GameObject GetPooledObject(string name)

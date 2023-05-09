@@ -33,4 +33,11 @@ public class Wall : MonoBehaviour
 
         GameObject exitObstacleClone = Instantiate(exitObstacle, transform.position + Vector3.down, transform.rotation);
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.transform.parent.name.Contains("Shot")) other.gameObject.SetActive(false);
+    }
+
+
 }

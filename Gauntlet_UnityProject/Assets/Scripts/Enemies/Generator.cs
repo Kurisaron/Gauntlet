@@ -31,8 +31,7 @@ public class Generator : Foe
                 
                 if (enemyToSpawn != null)
                 {
-                    enemyToSpawn.transform.position = transform.position;
-                    enemyToSpawn.transform.rotation = transform.rotation;
+                    enemyToSpawn.transform.SetPositionAndRotation(transform.position, transform.rotation);
                     enemyToSpawn.GetComponent<Enemy>().level = level;
                     enemyToSpawn.SetActive(true);
                 }
