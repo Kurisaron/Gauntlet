@@ -104,7 +104,11 @@ public class Player : MonoBehaviour
 
     // INVENTORY
 
-    public void AddUpgrade(Upgrade upgrade) => upgrades.Add(upgrade);
+    public void AddUpgrade(Upgrade upgrade)
+    {
+        upgrades.Add(upgrade);
+        GameUIManager.Instance.AddUpgrade(Array.FindIndex(GameManager.Instance.players, player => player == this), upgrade);
+    }
 
     public void AddItem(string potionORkey)
     {
@@ -132,14 +136,25 @@ public class Player : MonoBehaviour
         }
     }
 
-    // HEALTH DECAY
+    // HEALTH
     private IEnumerator HealthDecay()
     {
         while(gameObject.activeInHierarchy)
         {
             currentHealth -= 1;
+
+            if (currentHealth <= 0) PlayerDead();
+
             yield return new WaitForSeconds(1);
         }
+    }
+
+    private void PlayerDead()
+    {
+        int index = Array.FindIndex(GameManager.Instance.players, player => player == this);
+        GameUIManager.Instance.DisableContainer(index);
+        GameManager.Instance.players[index] = null;
+        Destroy(gameObject);
     }
 
     // SUM FUNCTIONS

@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8fa55c28c38ddc04ebfa2e5ba570f246, type: 3}
   m_Name: magicUpgrade
   m_EditorClassIdentifier: 
+  upgradeType: 1
   meleePower: 0
   magic: 2
   armor: 0

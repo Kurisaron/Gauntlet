@@ -14,6 +14,7 @@ public class GameManager : Singleton<GameManager>
 
     public CharacterClass[] classes;
     public Upgrade[] upgrades;
+    public Material[] enemyMaterials;
 
     public override void Awake()
     {
@@ -22,6 +23,7 @@ public class GameManager : Singleton<GameManager>
         levelManager = gameObject.AddComponent<LevelManager>();
 
         GetComponent<GameUIManager>().DisableAllContainers();
+
     }
 
     private void OnEnable()
@@ -96,4 +98,6 @@ public class GameManager : Singleton<GameManager>
 
         return myPlayer != null;
     }
+
+    
  }

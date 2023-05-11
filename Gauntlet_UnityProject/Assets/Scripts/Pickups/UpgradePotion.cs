@@ -33,12 +33,9 @@ public class UpgradePotion : Potion
 
     public override void OnPickUp(Player player)
     {
-        /* TO-DO:
-         * upgrade the stat that this potion has
-         * if the player who picked it up already has that specific upgrade, add potion to player inventory 
-         * update the UI for the player who picked it up to show that change
-         *
-         */
+        base.OnPickUp(player);
+        
+        player.AddUpgrade(upgrade);
     }
 
 

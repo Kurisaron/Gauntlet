@@ -60,6 +60,10 @@ public class GameUIManager : Singleton<GameUIManager>
         stats.ClassName.text = "Choose Class";
         stats.ClassName.fontSize = 13;
         stats.ScoreText.text = GameManager.Instance.players[index].score.ToString();
+        foreach (Image indicator in stats.upgradeIndicators)
+        {
+            indicator.gameObject.SetActive(false);
+        }
     }
 
     public void DisableContainer(int index)
@@ -99,6 +103,15 @@ public class GameUIManager : Singleton<GameUIManager>
         {
             stats.inventoryIndicators[i].color = Color.cyan;
         }
+
+    }
+
+    public void AddUpgrade(int index, Upgrade upgrade)
+    {
+        PlayerStats stats = playerContainers[index];
+
+        Debug.Log("Upgrade is type " + upgrade.upgradeType.ToString() + " (int " + ((int)upgrade.upgradeType).ToString() + ")");
+        if (!stats.upgradeIndicators[(int)upgrade.upgradeType].gameObject.activeInHierarchy) stats.upgradeIndicators[(int)upgrade.upgradeType].gameObject.SetActive(true);
     }
 
     // CLASSES
@@ -112,8 +125,8 @@ public class GameUIManager : Singleton<GameUIManager>
         private Text scoreText;
         [SerializeField]
         private Text healthText;
-        [SerializeField]
-        private Image[] upgradeIndicators;
+        //[SerializeField]
+        public Image[] upgradeIndicators;
         //[SerializeField]
         public Image[] inventoryIndicators;
 
