@@ -127,7 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 0
   level: 3
-  scoreIncrease: 0
+  scoreIncrease: 50
   enemyType: 4
   matRed: 71
   matGreen: 0

@@ -15,6 +15,16 @@ public class DemonShot : MonoBehaviour
         if (other.gameObject.GetComponent<Player>())
         {
             other.gameObject.GetComponent<Player>().currentHealth -= damage;
+            gameObject.SetActive(false);
         }
+        else
+        {
+            other.gameObject.SetActive(false);
+        }
+    }
+
+    private void Update()
+    {
+        transform.position += 10.0f * Time.deltaTime * transform.forward;
     }
 }

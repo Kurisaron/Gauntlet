@@ -32,7 +32,14 @@ public class Generator : Foe
                 if (enemyToSpawn != null)
                 {
                     enemyToSpawn.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                    
+                    enemyToSpawn.GetComponent<Enemy>().matRed = 255.0f * enemyToSpawn.GetComponent<Renderer>().material.color.r;
+                    enemyToSpawn.GetComponent<Enemy>().matGreen = 255.0f * enemyToSpawn.GetComponent<Renderer>().material.color.g;
+                    enemyToSpawn.GetComponent<Enemy>().matBlue = 255.0f * enemyToSpawn.GetComponent<Renderer>().material.color.b;
+                    
                     enemyToSpawn.GetComponent<Enemy>().level = level;
+                    enemyToSpawn.GetComponent<Enemy>().AssignStats();
+
                     enemyToSpawn.SetActive(true);
                 }
             }

@@ -2,34 +2,50 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Grunt : Enemy
+public class Lobber : Enemy
 {
+    [SerializeField] private GameObject lobberProjectile;
+    private List<GameObject> lobberProjectiles = new List<GameObject>();
+    
     private void Awake()
     {
-        triggerAction = GruntTrigger;
+        triggerAction = LobberTrigger;
     }
 
-    private void OnEnable()
+    private void Start()
     {
-        GameEventBus.Subscribe(GameEvent.EnemyDefeated, OnDefeat);
-    }
-
-    private void OnDisable()
-    {
-        GameEventBus.Unsubscribe(GameEvent.EnemyDefeated, OnDefeat);
-    }
-
-    private void Update()
-    {
-        if(health <= 0)
-        {
-            OnDefeat();
-        }
+        lobberProjectiles.Add(lobberProjectile);
+        StartCoroutine(ShootProjectile());
     }
 
     public override void Move()
     {
         
+    }
+
+    private IEnumerator ShootProjectile()
+    {
+        while (true)
+        {
+            foreach (GameObject projectile in lobberProjectiles)
+            {
+
+                GameObject shot = ObjectPooler.Instance.GetPooledObject(lobberProjectile.name);
+                shot.transform.parent = null;
+                float timeAlive = 0.0f;
+
+                shot.transform.SetPositionAndRotation(transform.position, transform.rotation);
+
+                while (timeAlive <= 2.0f)
+                {
+                    shot.SetActive(true);
+                    timeAlive += Time.deltaTime;
+                    yield return null;
+                }
+                shot.SetActive(false);
+            }
+
+        }
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -42,7 +58,7 @@ public class Grunt : Enemy
         StopAllCoroutines();
     }
 
-    private void GruntTrigger(Collider other)
+    private void LobberTrigger(Collider other)
     {
         if (other.gameObject.transform.parent.name.Contains("Shot"))
         {
@@ -71,4 +87,5 @@ public class Grunt : Enemy
             }
         }
     }
+
 }

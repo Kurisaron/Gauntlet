@@ -14,7 +14,7 @@ public class Demon : Enemy
 
     private void OnEnable()
     {
-        AssignStats();
+        //AssignStats();
 
         
     }
@@ -43,15 +43,14 @@ public class Demon : Enemy
 
                 shot.transform.SetPositionAndRotation(transform.position, transform.rotation);
                 
-                shot.SetActive(true);
-                
-                shot.transform.position += 10.0f * Time.deltaTime * shot.transform.forward;
-                timeAlive += Time.deltaTime;
-
-                if (timeAlive >= 2.0f) gameObject.SetActive(false);
+                while(timeAlive <= 2.0f)
+                {
+                    shot.SetActive(true);
+                    timeAlive += Time.deltaTime;
+                    yield return null;
+                }
+                shot.SetActive(false);
             }
-           
-            yield return new WaitForSeconds(1);
 
         }
     }

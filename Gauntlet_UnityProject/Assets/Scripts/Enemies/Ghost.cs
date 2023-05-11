@@ -20,7 +20,7 @@ public class Ghost : Enemy
 
         GetComponent<Renderer>().material.color = ghostColor;*/
 
-        AssignStats();
+        //AssignStats();
     }
 
     public override void AssignStats()

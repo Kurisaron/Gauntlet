@@ -11,7 +11,7 @@ public class Sorcerer : Enemy
 
     private void OnEnable()
     {
-        AssignStats();
+        //AssignStats();
 
         StartCoroutine(BecomeInvisible());
     }
