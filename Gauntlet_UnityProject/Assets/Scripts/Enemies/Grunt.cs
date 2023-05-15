@@ -6,7 +6,8 @@ public class Grunt : Enemy
 {
     private void Awake()
     {
-        triggerAction = GruntTrigger;
+        //triggerAction = GruntTrigger;
+        shotAction = EnemyShot_Default;
     }
 
     private void OnEnable()
@@ -66,4 +67,5 @@ public class Grunt : Enemy
             }
         }
     }
+
 }

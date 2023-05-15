@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
     private IEnumerator TestAttackRoutine(GameObject shot)
     {
         shot.transform.parent = null;
+        shot.AddComponent<PlayerShot>().shooter = this;
         float timeAlive = 0.0f;
 
         while (timeAlive < 3.0f)
@@ -99,7 +100,8 @@ public class Player : MonoBehaviour
 
     public void UsePotion()
     {
-
+        if (potionsHeld > 0) PotionAttackManager.Instance.UsePotion(this);
+        else Debug.Log("No more potions for Player " + Array.FindIndex(GameManager.Instance.players, player => player == this).ToString());
     }
 
     // INVENTORY

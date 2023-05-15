@@ -67,6 +67,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Use Potion",
+                    "type": "Button",
+                    "id": "70f0a8e8-9020-429c-9b4c-9617ee03877a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -314,6 +323,17 @@
                 },
                 {
                     "name": "",
+                    "id": "26a96e92-9a0b-46ce-959e-ec0519af702d",
+                    "path": "<Gamepad>/dpad/up",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Warrior",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "70585de1-bfb7-401a-861d-4847fcc471da",
                     "path": "<Keyboard>/rightArrow",
                     "interactions": "",
@@ -330,6 +350,17 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard&Mouse",
+                    "action": "Select Wizard",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7c077f51-9fa5-45f5-86a4-0a4a67d50342",
+                    "path": "<Gamepad>/dpad/right",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
                     "action": "Select Wizard",
                     "isComposite": false,
                     "isPartOfComposite": false
@@ -358,6 +389,17 @@
                 },
                 {
                     "name": "",
+                    "id": "fe234db0-e9ff-48fd-972a-6aeaab38e270",
+                    "path": "<Gamepad>/dpad/down",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Valkyrie",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "aedd7bbe-80ed-4649-94ec-5cd9534875c7",
                     "path": "<Keyboard>/leftArrow",
                     "interactions": "",
@@ -375,6 +417,39 @@
                     "processors": "",
                     "groups": "Keyboard&Mouse",
                     "action": "Select Elf",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f166e83b-d461-4814-b363-0ff42f8977e7",
+                    "path": "<Gamepad>/dpad/left",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Select Elf",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e981e2e9-6c93-4b31-96c4-55510cb54163",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Use Potion",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3cc5ac7a-b471-4675-b910-ddfe35d157c9",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Gamepad",
+                    "action": "Use Potion",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

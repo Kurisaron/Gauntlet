@@ -6,7 +6,8 @@ public class Sorcerer : Enemy
 {
     private void Awake()
     {
-        triggerAction = SorcererTrigger;
+        //triggerAction = SorcererTrigger;
+        shotAction = EnemyShot_Default;
     }
 
     private void OnEnable()

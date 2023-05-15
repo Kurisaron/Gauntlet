@@ -73,6 +73,9 @@ public class GameUIManager : Singleton<GameUIManager>
 
     public void SetClass(int index, ClassEnum classEnum)
     {
+        Debug.Log("GameUIManager: Set Class, container length is " + playerContainers.Length.ToString() + ". Current index called is " + index.ToString());
+        
+        
         PlayerStats stats = playerContainers[index];
         stats.ClassName.text = classEnum.ToString();
         stats.ClassName.fontSize = 18;

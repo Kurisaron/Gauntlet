@@ -9,7 +9,8 @@ public class Death : Enemy
 
     private void Awake()
     {
-        triggerAction = DeathTrigger;
+        //triggerAction = DeathTrigger;
+        shotAction = DeathShot;
     }
 
     private void Update()
@@ -99,6 +100,23 @@ public class Death : Enemy
         }
         //if collision is a potion attack, do ondefeat() and addscore() and make hitbyPotion true so that it applies the bonus score
     }
+
+    private void DeathShot(PlayerShot shot)
+    {
+        timesTriggered++;
+        if (timesTriggered >= 7) timesTriggered = 0;
+
+        AddScore(shot.shooter, false);
+        shot.gameObject.SetActive(false);
+    }
+
+    public override void PotionAttack(float magicPower)
+    {
+        base.PotionAttack(magicPower);
+
+    }
+
+
     private void OnCollisionExit(Collision collision)
     {
         StopAllCoroutines();

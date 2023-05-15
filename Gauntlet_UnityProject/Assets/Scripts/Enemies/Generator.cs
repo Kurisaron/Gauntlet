@@ -9,7 +9,8 @@ public class Generator : Foe
 
     private void Awake()
     {
-        triggerAction = GeneratorTrigger;
+        //triggerAction = GeneratorTrigger;
+        shotAction = GeneratorShot;
     }
     private void Start()
     {
@@ -55,5 +56,18 @@ public class Generator : Foe
             health--;
             level--;
         }
+    }
+
+    private void GeneratorShot(PlayerShot shot)
+    {
+        ReduceHealth(shot.shooter.ShotPower);
+        level--;
+    }
+
+    public override void PotionAttack(float magicPower)
+    {
+        base.PotionAttack(magicPower);
+
+
     }
 }

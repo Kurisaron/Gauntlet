@@ -6,7 +6,8 @@ public class Ghost : Enemy
 {
     private void Awake()
     {
-        triggerAction = GhostTrigger;
+        //triggerAction = GhostTrigger;
+        shotAction = EnemyShot_Default;
     }
 
     private void OnEnable()
@@ -80,4 +81,5 @@ public class Ghost : Enemy
             }
         }
     }
+
 }

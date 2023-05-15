@@ -9,7 +9,7 @@ using UnityEngine.InputSystem;
 public class GameManager : Singleton<GameManager>
 {
     public LevelManager levelManager;
-    [HideInInspector]
+    //[HideInInspector]
     public Player[] players = new Player[4];
 
     public CharacterClass[] classes;
@@ -43,18 +43,22 @@ public class GameManager : Singleton<GameManager>
     // PLAYER INPUT MANAGER EVENTS
     public void NewPlayerJoined(PlayerInput playerInput)
     {
-        // TO-DO: Make adjustments to player, let them choose class, etc.
-
+        
         // Open class selection key in UI
         // Put new player's input into class selection state
 
         // Put new player into the first empty spot of the local array
-        int index = GetFirstEmptyIndex();
-        players[index] = playerInput.gameObject.GetComponent<Player>();
-        GameUIManager.Instance.EnableContainer(index);
+        if (SpotFree(out int index))
+        {
+            Debug.Log("Spot Free: " + index.ToString());
+            players[index] = playerInput.gameObject.GetComponent<Player>();
+            GameUIManager.Instance.EnableContainer(index);
 
-        // Player has joined, game event must fire
-        GameEventBus.Publish(GameEvent.PlayerAdded);
+            // Player has joined, game event must fire
+            GameEventBus.Publish(GameEvent.PlayerAdded);
+        }
+
+
     }
 
     public void PlayerLeft(PlayerInput playerInput)
@@ -82,9 +86,19 @@ public class GameManager : Singleton<GameManager>
     }
 
     // MISC PLAYERS FUNCTIONS
-    public int GetFirstEmptyIndex()
+    private bool SpotFree(out int index)
     {
-        return Array.FindIndex(players, player => player == null);
+        for (int i = 0; i < players.Length; i++)
+        {
+            if (players[i] == null)
+            {
+                index = i;
+                return true;
+            }
+        }
+
+        index = 0;
+        return false;
     }
 
     public int GetPlayerIndex(Player playerToFind)

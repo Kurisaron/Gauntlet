@@ -9,7 +9,8 @@ public class Demon : Enemy
 
     private void Awake()
     {
-        triggerAction = DemonTrigger;
+        //triggerAction = DemonTrigger;
+        shotAction = EnemyShot_Default;
     }
 
     private void OnEnable()
@@ -94,4 +95,5 @@ public class Demon : Enemy
             }
         }
     }
+
 }

@@ -54,4 +54,17 @@ public abstract class Enemy : Foe
         GetComponent<Renderer>().material.color = materialColor;
     }
 
+    protected void EnemyShot_Default(PlayerShot shot)
+    {
+        ReduceHealth(shot.shooter.ShotPower);
+        AddScore(shot.shooter, scoreIncrease);
+        shot.gameObject.SetActive(false);
+    }
+
+    public override void PotionAttack(float magicPower)
+    {
+        base.PotionAttack(magicPower);
+
+    }
+
 }

@@ -84,8 +84,8 @@ public class PlayerInputEvents : MonoBehaviour
 
         if (GetComponent<Renderer>().material.color == Color.black) Debug.Log("Your class choice was somehow invalid. For your intrepid behaviour, enjoy playing as the necromancer.");
 
-        //Debug.Log(Array.FindIndex(GameManager.Instance.players, player => player == gameObject.GetComponent<Player>()).ToString());
-        GameUIManager.Instance.SetClass(Array.FindIndex(GameManager.Instance.players, player => player == gameObject.GetComponent<Player>()), classEnum);
+        Debug.Log(GameManager.Instance.GetPlayerIndex(player).ToString());
+        GameUIManager.Instance.SetClass(GameManager.Instance.GetPlayerIndex(player), classEnum);
 
         classSelected = true;
     }
@@ -95,6 +95,13 @@ public class PlayerInputEvents : MonoBehaviour
     {
         if (!classSelected || !context.performed) return;
 
-        GetComponent<Player>().DoAttack();
+        player.DoAttack();
+    }
+
+    public void UsePotion(InputAction.CallbackContext context)
+    {
+        if (!classSelected || !context.performed) return;
+
+        player.UsePotion();
     }
 }

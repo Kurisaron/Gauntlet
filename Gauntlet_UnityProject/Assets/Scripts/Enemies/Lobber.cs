@@ -9,7 +9,8 @@ public class Lobber : Enemy
     
     private void Awake()
     {
-        triggerAction = LobberTrigger;
+        //triggerAction = LobberTrigger;
+        shotAction = EnemyShot_Default;
     }
 
     private void Start()
