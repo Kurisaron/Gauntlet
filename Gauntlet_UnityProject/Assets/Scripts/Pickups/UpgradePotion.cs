@@ -36,6 +36,7 @@ public class UpgradePotion : Potion
         base.OnPickUp(player);
         
         player.AddUpgrade(upgrade);
+        GameEventBus.Publish(GameEvent.Upgraded);
     }
 
 

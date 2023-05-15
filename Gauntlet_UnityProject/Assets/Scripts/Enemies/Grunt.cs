@@ -11,12 +11,7 @@ public class Grunt : Enemy
 
     private void OnEnable()
     {
-        GameEventBus.Subscribe(GameEvent.EnemyDefeated, OnDefeat);
-    }
-
-    private void OnDisable()
-    {
-        GameEventBus.Unsubscribe(GameEvent.EnemyDefeated, OnDefeat);
+        //AssignStats(); //for testing without the generator
     }
 
     private void Update()

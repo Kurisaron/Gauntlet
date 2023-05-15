@@ -24,7 +24,7 @@ public class Food : Pickup
     private void OnShot()
     {
         //TO-DO:
-        //play audio clip associated with shooting food
+        //if a player shoots the food, GameEventBus.Publish(GameEvent.ShotFood);
         this.gameObject.SetActive(false);
     }
 
@@ -34,10 +34,8 @@ public class Food : Pickup
         if (collision.gameObject.GetComponent<Player>())
         {
             OnPickUp(collision.gameObject.GetComponent<Player>());
+            GameEventBus.Publish(GameEvent.AddHealth);
             this.gameObject.SetActive(false);
         }
-
-        //TO-DO:
-        //if a player shoots the food, GameEventBus.Publish(GameEvent.ShotFood);
     }
 }

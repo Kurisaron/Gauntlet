@@ -15,7 +15,8 @@ public enum GameEvent
     ScoreAdded,
     PlayerAdded,
     PlayerLeft,
-    DoorOpened
+    DoorOpened,
+    Upgraded
 }
 
 public class GameEventBus
