@@ -19,6 +19,8 @@ public class UpgradePotion : Potion
 
     private void GetRandomUpgrade()
     {
+        if (GameManager.Instance == null) Debug.LogError("GAMEMANAGER NOT ACTIVE");
+        
         upgrade = Instantiate(GameManager.Instance.upgrades[Random.Range(0, GameManager.Instance.upgrades.Length)]);
         if (upgrade != null)
         {

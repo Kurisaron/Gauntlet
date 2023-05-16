@@ -27,6 +27,7 @@ public class Lobber : Enemy
         Player target = null;
         float minDistance = 5000.0f;
 
+        
         foreach (Player player in GameManager.Instance.players)
         {
             if (player == null) continue;

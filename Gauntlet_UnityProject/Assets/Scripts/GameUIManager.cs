@@ -32,6 +32,7 @@ public class GameUIManager : Singleton<GameUIManager>
         {
             if (!playerContainers[i].frame.activeInHierarchy) continue;
 
+            playerContainers[i].HealthText.text = GameManager.Instance.players[i].score.ToString();
         }
     }
 
