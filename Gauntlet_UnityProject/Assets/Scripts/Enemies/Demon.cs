@@ -6,6 +6,7 @@ public class Demon : Enemy
 {
     private List<GameObject> demonProjectiles = new List<GameObject>();
     [SerializeField] private GameObject demonProjectile;
+    private Vector3 shootDirection;
 
     private void Awake()
     {
@@ -27,6 +28,35 @@ public class Demon : Enemy
         StartCoroutine(ShootProjectile());
     }
 
+    protected override void Update()
+    {
+        base.Update();
+
+        UpdateShootDirection();
+    }
+
+    private void UpdateShootDirection()
+    {
+        Player target = null;
+        float minDistance = 5000.0f;
+
+        foreach (Player player in GameManager.Instance.players)
+        {
+            if (player == null) continue;
+
+            if (Vector3.Distance(transform.position, player.transform.position) < minDistance)
+            {
+                minDistance = Vector3.Distance(transform.position, player.transform.position);
+                target = player;
+            }
+        }
+
+        if (target != null)
+        {
+            shootDirection = (target.transform.position - transform.position).normalized;
+        }
+    }
+
     private IEnumerator ShootProjectile()
     {
         while (true)
@@ -39,6 +69,7 @@ public class Demon : Enemy
                 float timeAlive = 0.0f;
 
                 shot.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                shot.GetComponent<DemonShot>().moveDirection = shootDirection;
                 
                 while(timeAlive <= 2.0f)
                 {

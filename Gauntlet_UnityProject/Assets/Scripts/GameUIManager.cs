@@ -23,7 +23,8 @@ public class GameUIManager : Singleton<GameUIManager>
     private void Update()
     {
         ShowClassChoices();
-
+        UpdateHealth();
+        UpdateScore();
     }
 
     private void UpdateHealth()
@@ -32,7 +33,7 @@ public class GameUIManager : Singleton<GameUIManager>
         {
             if (!playerContainers[i].frame.activeInHierarchy) continue;
 
-            playerContainers[i].HealthText.text = GameManager.Instance.players[i].score.ToString();
+            playerContainers[i].HealthText.text = "Health: " + GameManager.Instance.players[i].currentHealth.ToString();
         }
     }
 
@@ -42,7 +43,7 @@ public class GameUIManager : Singleton<GameUIManager>
         {
             if (!playerContainers[i].frame.activeInHierarchy) continue;
 
-            playerContainers[i].ScoreText.text = GameManager.Instance.players[i].score.ToString();
+            playerContainers[i].ScoreText.text = "Score: " + GameManager.Instance.players[i].score.ToString();
         }
     }
 

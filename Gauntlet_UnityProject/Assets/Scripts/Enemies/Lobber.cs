@@ -7,6 +7,7 @@ public class Lobber : Enemy
     [SerializeField] private GameObject lobberProjectile;
     private List<GameObject> lobberProjectiles = new List<GameObject>();
     private bool runningAway = false;
+    private Vector3 shootDirection;
     
     private void Awake()
     {
@@ -41,8 +42,9 @@ public class Lobber : Enemy
 
         if (target != null)
         {
-            Debug.Log(Vector3.Distance(target.transform.position, transform.position));
-            
+            //Debug.Log(Vector3.Distance(target.transform.position, transform.position));
+
+            shootDirection = (target.transform.position - transform.position).normalized;
             runningAway = Vector3.Distance(target.transform.position, transform.position) < 3.0f;
             if (runningAway) RunAway(target);
             else RunTowards(target);
@@ -79,6 +81,7 @@ public class Lobber : Enemy
                 float timeAlive = 0.0f;
 
                 shot.transform.SetPositionAndRotation(transform.position, transform.rotation);
+                shot.GetComponent<DemonShot>().moveDirection = shootDirection;
 
                 while (timeAlive <= 2.0f)
                 {

@@ -5,6 +5,7 @@ using UnityEngine;
 public class DemonShot : MonoBehaviour
 {
     [SerializeField] private int damage = 10;
+    public Vector3 moveDirection;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -19,12 +20,12 @@ public class DemonShot : MonoBehaviour
         }
         else
         {
-            other.gameObject.SetActive(false);
+            //other.gameObject.SetActive(false);
         }
     }
 
     private void Update()
     {
-        transform.position += 10.0f * Time.deltaTime * transform.forward;
+        transform.position += 10.0f * Time.deltaTime * moveDirection;
     }
 }
