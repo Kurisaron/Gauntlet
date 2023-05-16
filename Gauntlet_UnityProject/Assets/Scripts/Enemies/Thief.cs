@@ -24,6 +24,8 @@ public class Thief : Enemy
         int mostItems = 0;
         foreach(Player player in GameManager.Instance.players)
         {
+            if (player == null) continue;
+            
             if (player.keysHeld + player.potionsHeld + player.upgrades.Count > mostItems)
             {
                 mostItems = player.keysHeld + player.potionsHeld + player.upgrades.Count;
