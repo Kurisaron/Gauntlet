@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Treasure : Pickup
 {
-    [SerializeField] private int increaseScoreAmount;
+    public int increaseScoreAmount;
     
     public override void OnPickUp(Player player)
     {

@@ -98,7 +98,13 @@ public class GameUIManager : Singleton<GameUIManager>
     public void UpdateInventory(int index)
     {
         PlayerStats stats = playerContainers[index];
-        for(int i = 0; i < GameManager.Instance.players[index].keysHeld; i++)
+
+        for (int i = 0; i < stats.inventoryIndicators.Length; i++)
+        {
+            stats.inventoryIndicators[i].color = Color.white;
+        }
+
+        for (int i = 0; i < GameManager.Instance.players[index].keysHeld; i++)
         {
             stats.inventoryIndicators[i].color = Color.yellow;
         }
@@ -107,6 +113,7 @@ public class GameUIManager : Singleton<GameUIManager>
             stats.inventoryIndicators[i].color = Color.cyan;
         }
 
+        Debug.Log(index);
     }
 
     public void AddUpgrade(int index, Upgrade upgrade)

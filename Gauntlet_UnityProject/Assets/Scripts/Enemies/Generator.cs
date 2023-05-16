@@ -12,15 +12,25 @@ public class Generator : Foe
         //triggerAction = GeneratorTrigger;
         shotAction = GeneratorShot;
     }
-    private void Start()
+
+    private void OnEnable()
     {
         health = level;
-
-
         enemyObjectList.Add(enemyType);
-        StartCoroutine(SpawnEnemy(enemyType));
+
+        GameEventBus.Subscribe(GameEvent.PlayerAdded, StartSpawnEnemy);
     }
 
+
+    private void OnDisable()
+    {
+        GameEventBus.Unsubscribe(GameEvent.PlayerAdded, StartSpawnEnemy);
+    }
+
+    private void StartSpawnEnemy()
+    {
+        StartCoroutine(SpawnEnemy(enemyType));
+    }
 
     private IEnumerator SpawnEnemy(EnemyType enemyType)
     {
@@ -41,20 +51,16 @@ public class Generator : Foe
                     enemyToSpawn.GetComponent<Enemy>().level = level;
                     enemyToSpawn.GetComponent<Enemy>().AssignStats();
 
+                    if(enemyType == EnemyType.Ghost)
+                    {
+                        enemyToSpawn.GetComponent<Ghost>().AssignStats();
+                    }
+
                     enemyToSpawn.SetActive(true);
                 }
             }
 
             yield return new WaitForSeconds(1);
-        }
-    }
-
-    private void GeneratorTrigger(Collider other)
-    {
-        if (other.gameObject.transform.parent.name.Contains("Shot"))
-        {
-            health--;
-            level--;
         }
     }
 

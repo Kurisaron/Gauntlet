@@ -47,8 +47,10 @@ public class Foe : MonoBehaviour
     {
         health -= amount;
 
-        if (health <= 0) gameObject.SetActive(false);
+        if (health <= 0) OnDefeat();
     }
+
+    public virtual void OnDefeat() => gameObject.SetActive(false);
 
     public virtual void PotionAttack(float magicPower)
     {

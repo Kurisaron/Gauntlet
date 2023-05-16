@@ -39,8 +39,6 @@ public abstract class Enemy : Foe
         }
     }
 
-    public void OnDefeat() => gameObject.SetActive(false);
-
     public virtual IEnumerator DrainHealth(Player player)
     {
         while (health < 0)
