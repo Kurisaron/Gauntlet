@@ -26,11 +26,6 @@ public class Demon : Enemy
         StartCoroutine(ShootProjectile());
     }
 
-    public override void Move()
-    {
-        
-    }
-
     private IEnumerator ShootProjectile()
     {
         while (true)
@@ -64,36 +59,6 @@ public class Demon : Enemy
     private void OnCollisionExit(Collision collision)
     {
         StopAllCoroutines();
-    }
-
-    private void DemonTrigger(Collider other)
-    {
-        if (other.gameObject.transform.parent.name.Contains("Shot"))
-        {
-            //health - shot power?
-            //also change this so that it accounts for players who have the same class
-            //tracks who shot that projectile so that the correct player is awarded a point
-            if (other.gameObject.transform.parent.name.Contains("Elf") && FindObjectOfType<Player>().name.Contains("Elf"))
-            {
-                AddScore(GameObject.Find("Elf").GetComponent<Player>(), scoreIncrease);
-                other.gameObject.SetActive(false);
-            }
-            if (other.gameObject.transform.parent.name.Contains("Warrior") && FindObjectOfType<Player>().name.Contains("Warrior"))
-            {
-                AddScore(GameObject.Find("Warrior").GetComponent<Player>(), scoreIncrease);
-                other.gameObject.SetActive(false);
-            }
-            if (other.gameObject.transform.parent.name.Contains("Valkyrie") && FindObjectOfType<Player>().name.Contains("Valkyrie"))
-            {
-                AddScore(GameObject.Find("Valkyrie").GetComponent<Player>(), scoreIncrease);
-                other.gameObject.SetActive(false);
-            }
-            if (other.gameObject.transform.parent.name.Contains("Wizard") && FindObjectOfType<Player>().name.Contains("Wizard"))
-            {
-                AddScore(GameObject.Find("Wizard").GetComponent<Player>(), scoreIncrease);
-                other.gameObject.SetActive(false);
-            }
-        }
     }
 
 }

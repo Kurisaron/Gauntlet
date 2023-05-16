@@ -11,8 +11,34 @@ public abstract class Enemy : Foe
     public float speed;
 
     //FUNCTIONS
+    protected virtual void Update()
+    {
+        Move();
+    }
+
     public void Attack(Player player) => player.currentHealth -= damage;
-    public abstract void Move();
+    public virtual void Move()
+    {
+        Player target = null;
+        float minDistance = 5000.0f;
+
+        foreach (Player player in GameManager.Instance.players)
+        {
+            if (player == null) continue;
+            
+            if (Vector3.Distance(transform.position, player.transform.position) < minDistance)
+            {
+                minDistance = Vector3.Distance(transform.position, player.transform.position);
+                target = player;
+            }
+        }
+
+        if (target != null)
+        {
+            transform.position += (target.transform.position - transform.position).normalized * speed * Time.deltaTime;
+        }
+    }
+
     public void OnDefeat() => gameObject.SetActive(false);
 
     public virtual IEnumerator DrainHealth(Player player)

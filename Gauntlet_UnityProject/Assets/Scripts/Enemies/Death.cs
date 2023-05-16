@@ -13,10 +13,6 @@ public class Death : Enemy
         shotAction = DeathShot;
     }
 
-    private void Update()
-    {
-        Move();
-    }
     public void AddScore(Player player, bool hitByPotion)
     {
         scoreIncrease = 1;
@@ -37,18 +33,6 @@ public class Death : Enemy
         
     }
 
-    public override void Move()
-    {
-        //transform.position += speed * Time.deltaTime * Vector3.forward;
-
-        /*float distance;
-
-        if(distance <= detectionRadius) 
-        {
-            //Vector3.MoveTowards(transform.position, GameObject.Find("player(Clone)").transform.position, detectionRadius);
-        }*/
-
-    }
 
     public override IEnumerator DrainHealth(Player player)
     {
@@ -67,38 +51,6 @@ public class Death : Enemy
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Player>()) StartCoroutine(DrainHealth(collision.gameObject.GetComponent<Player>()));       
-    }
-
-    private void DeathTrigger(Collider other)
-    {
-        if (other.gameObject.transform.parent.name.Contains("Shot"))
-        {
-            timesTriggered++;
-            if (timesTriggered >= 7) timesTriggered = 0;
-
-            //tracks who shot that projectile so that the correct player is awarded a point
-            if (other.gameObject.transform.parent.name.Contains("Elf") && FindObjectOfType<Player>().name.Contains("Elf"))
-            {
-                AddScore(GameObject.Find("Elf").GetComponent<Player>(), false);
-                other.gameObject.SetActive(false);
-            }
-            if (other.gameObject.transform.parent.name.Contains("Warrior") && FindObjectOfType<Player>().name.Contains("Warrior"))
-            {
-                AddScore(GameObject.Find("Warrior").GetComponent<Player>(), false);
-                other.gameObject.SetActive(false);
-            }
-            if (other.gameObject.transform.parent.name.Contains("Valkyrie") && FindObjectOfType<Player>().name.Contains("Valkyrie"))
-            {
-                AddScore(GameObject.Find("Valkyrie").GetComponent<Player>(), false);
-                other.gameObject.SetActive(false);
-            }
-            if (other.gameObject.transform.parent.name.Contains("Wizard") && FindObjectOfType<Player>().name.Contains("Wizard"))
-            {
-                AddScore(GameObject.Find("Wizard").GetComponent<Player>(), false);
-                other.gameObject.SetActive(false);
-            }
-        }
-        //if collision is a potion attack, do ondefeat() and addscore() and make hitbyPotion true so that it applies the bonus score
     }
 
     private void DeathShot(PlayerShot shot)
