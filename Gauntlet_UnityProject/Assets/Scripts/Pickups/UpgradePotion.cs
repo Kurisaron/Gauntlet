@@ -9,7 +9,7 @@ public class UpgradePotion : Potion
     
     private void OnEnable()
     {
-        GetRandomUpgrade();
+        //GetRandomUpgrade();
         GameEventBus.Subscribe(GameEvent.ShotPotion, Explode);
     }
     private void OnDisable()

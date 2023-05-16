@@ -2347,6 +2347,7 @@ GameObject:
   - component: {fileID: 1968029499}
   - component: {fileID: 1968029498}
   - component: {fileID: 1968029497}
+  - component: {fileID: 1968029500}
   m_Layer: 0
   m_Name: UpgradePotion
   m_TagString: Untagged
@@ -2431,6 +2432,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1968029495}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1968029500
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968029495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca17a86853eed9048bd956ba5934317a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isDestructible: 0
+  upgrade: {fileID: 0}
 --- !u!114 &2049970589 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4543744123956697197, guid: d5799fd1cd7ad3645b5e8d38658b1b9d, type: 3}
@@ -3514,6 +3529,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1186952248}
     m_Modifications:
+    - target: {fileID: -3020368216790496814, guid: 3476018689f2b8242b32506b83925d65, type: 3}
+      propertyPath: m_UseGravity
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -3020368216790496814, guid: 3476018689f2b8242b32506b83925d65, type: 3}
+      propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6335007475817059194, guid: 3476018689f2b8242b32506b83925d65, type: 3}
       propertyPath: m_RootOrder
       value: 2

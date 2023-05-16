@@ -8,6 +8,8 @@ public class CameraManager : Singleton<CameraManager>
     
     private void Update()
     {
+        if (GameManager.Instance == null) return;
+        
         if (GameManager.Instance.AnyPlayers())
         {
             Vector3 midPoint = GetMidPoint();
