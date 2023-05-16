@@ -52,12 +52,15 @@ public class Lobber : Enemy
     private void RunAway(Player target)
     {
         //Debug.Log("Lobber Running Away");
+        if (Vector3.Distance(transform.position, target.transform.position) - 3.0f <= 0.25f) return;
+
         transform.position += speed * Time.deltaTime * (transform.position - target.transform.position);
     }
 
     private void RunTowards(Player target)
     {
         //Debug.Log("Lobber Running Towards");
+        if (Vector3.Distance(transform.position, target.transform.position) - 3.0f <= 0.25f) return;
         transform.position += speed * Time.deltaTime * (target.transform.position - transform.position);
     }
 
