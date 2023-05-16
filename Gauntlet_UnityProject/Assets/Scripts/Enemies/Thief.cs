@@ -94,6 +94,7 @@ public class Thief : Enemy
 
     private void RobPlayer(Player player)
     {
+        itemStolen = true;
         player.currentHealth -= 10; //deal damage
 
         if (player.upgrades.Count > 0)
