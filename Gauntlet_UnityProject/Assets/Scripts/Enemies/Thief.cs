@@ -15,6 +15,7 @@ public class Thief : Enemy
     [SerializeField] private ItemHeld itemHeld;
     private bool itemStolen = false;
     private Player targetPlayer = null;
+    private GameObject exit;
     
     private void OnEnable()
     {
@@ -22,6 +23,8 @@ public class Thief : Enemy
         moveAction = Move;
 
         GameEventBus.Subscribe(GameEvent.PlayerAdded, FindPlayer);
+
+        exit = FindObjectOfType<ExitObstacle>(false).gameObject;
     }
 
     
@@ -54,15 +57,15 @@ public class Thief : Enemy
         else
         {
             // Move away from the target
-            RunAway(targetPlayer);
+            RunAway();
         }
     }
 
-    private void RunAway(Player target)
+    private void RunAway()
     {
         //Debug.Log("Lobber Running Away");
 
-        transform.position += speed * Time.deltaTime * (transform.position - target.transform.position);
+        transform.position += speed * Time.deltaTime * (exit.transform.position - transform.position);
     }
 
     private void RunTowards(Player target)
@@ -73,7 +76,7 @@ public class Thief : Enemy
 
     public override void OnDefeat(Player player, int score = 0)
     {
-        base.OnDefeat(player, score);
+        
         if (itemHeld == ItemHeld.Potion)
         {
             GameObject potion = Instantiate((GameObject)Resources.Load("Prefabs/Pickups/Potion"));
@@ -92,11 +95,14 @@ public class Thief : Enemy
             treasure.GetComponent<Treasure>().increaseScoreAmount = 500;
             treasure.transform.position = transform.position;
         }
+        base.OnDefeat(player, score);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.GetComponent<Player>()) RobPlayer(collision.gameObject.GetComponent<Player>());
+
+        if (collision.gameObject.GetComponent<ExitObstacle>()) Escape();
     }
 
     private void RobPlayer(Player player)
@@ -129,5 +135,10 @@ public class Thief : Enemy
             Debug.Log("Took ur key");
             return;
         }
+    }
+
+    private void Escape()
+    {
+        gameObject.SetActive(false);
     }
 }
