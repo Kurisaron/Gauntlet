@@ -13,18 +13,55 @@ public enum ItemHeld
 public class Thief : Enemy
 {
     [SerializeField] private ItemHeld itemHeld;
+    private bool itemStolen = false;
+    private Player targetPlayer = null;
     
     private void OnEnable()
     {
         shotAction = EnemyShot_Default;
         moveAction = Move;
+
+        int mostItems = 0;
+        foreach(Player player in GameManager.Instance.players)
+        {
+            if (player.keysHeld + player.potionsHeld + player.upgrades.Count > mostItems)
+            {
+                mostItems = player.keysHeld + player.potionsHeld + player.upgrades.Count;
+                targetPlayer = player;
+            }
+        }
+        if (targetPlayer == null && GameManager.Instance.players[0] != null) targetPlayer = GameManager.Instance.players[0];
     }
 
     public override void Move()
     {
-        //TO-DO:
-        // make thief follow the player with the most items in the inventory
-        // if the thief has successfully robbed someone, they will go towards the exit obstacle
+        if (targetPlayer == null) OnDefeat(null);
+
+        if (!itemStolen)
+        {
+            // Move towards the target
+            RunTowards(targetPlayer);
+        }
+        else
+        {
+            // Move away from the target
+            RunAway(targetPlayer);
+        }
+    }
+
+    private void RunAway(Player target)
+    {
+        //Debug.Log("Lobber Running Away");
+        if (Vector3.Distance(transform.position, target.transform.position) - 3.0f <= 0.25f) return;
+
+        transform.position += speed * Time.deltaTime * (transform.position - target.transform.position);
+    }
+
+    private void RunTowards(Player target)
+    {
+        //Debug.Log("Lobber Running Towards");
+        if (Vector3.Distance(transform.position, target.transform.position) - 3.0f <= 0.25f) return;
+        transform.position += speed * Time.deltaTime * (target.transform.position - transform.position);
     }
 
     public override void OnDefeat(Player player, int score = 0)
