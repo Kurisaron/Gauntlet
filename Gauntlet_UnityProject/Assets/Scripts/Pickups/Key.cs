@@ -6,6 +6,7 @@ public class Key : Pickup
 {
     public override void OnPickUp(Player player)
     {
+        player.score += 100;
         player.AddItem("key");
     }
 

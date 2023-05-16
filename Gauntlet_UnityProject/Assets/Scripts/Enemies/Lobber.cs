@@ -40,7 +40,9 @@ public class Lobber : Enemy
 
         if (target != null)
         {
-            runningAway = Vector3.Distance(target.transform.position, transform.position) < 1.0f;
+            Debug.Log(Vector3.Distance(target.transform.position, transform.position));
+            
+            runningAway = Vector3.Distance(target.transform.position, transform.position) < 3.0f;
             if (runningAway) RunAway(target);
             else RunTowards(target);
             
@@ -49,14 +51,14 @@ public class Lobber : Enemy
 
     private void RunAway(Player target)
     {
-        Debug.Log("Lobber Running Away");
-        transform.position += (transform.position - target.transform.position) * Time.deltaTime * 0.01f;
+        //Debug.Log("Lobber Running Away");
+        transform.position += speed * Time.deltaTime * (transform.position - target.transform.position);
     }
 
     private void RunTowards(Player target)
     {
-        Debug.Log("Lobber Running Towards");
-        transform.position += (target.transform.position - transform.position) * Time.deltaTime * 0.01f;
+        //Debug.Log("Lobber Running Towards");
+        transform.position += speed * Time.deltaTime * (target.transform.position - transform.position);
     }
 
     private IEnumerator ShootProjectile()
