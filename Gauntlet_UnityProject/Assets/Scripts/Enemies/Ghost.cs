@@ -24,7 +24,7 @@ public class Ghost : Enemy
         if (collision.gameObject.GetComponent<Player>())
         {
             Attack(collision.gameObject.GetComponent<Player>());
-            OnDefeat();
+            OnDefeat(collision.gameObject.GetComponent<Player>());
         }
     }
 

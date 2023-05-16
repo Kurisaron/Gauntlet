@@ -66,14 +66,8 @@ public class Generator : Foe
 
     private void GeneratorShot(PlayerShot shot)
     {
-        ReduceHealth(shot.shooter.ShotPower);
+        ReduceHealth(shot.shooter.ShotPower, shot.shooter);
         level--;
     }
 
-    public override void PotionAttack(float magicPower)
-    {
-        base.PotionAttack(magicPower);
-
-
-    }
 }

@@ -50,7 +50,7 @@ public abstract class Enemy : Foe
             yield return new WaitForSeconds(1.5f);
         }
 
-        if(health <= 0) OnDefeat();
+        if(health <= 0) OnDefeat(player);
     }
 
     public virtual void AssignStats()
@@ -81,15 +81,10 @@ public abstract class Enemy : Foe
 
     protected void EnemyShot_Default(PlayerShot shot)
     {
-        ReduceHealth(shot.shooter.ShotPower);
+        ReduceHealth(shot.shooter.ShotPower, shot.shooter);
         AddScore(shot.shooter, scoreIncrease);
         shot.gameObject.SetActive(false);
     }
 
-    public override void PotionAttack(float magicPower)
-    {
-        base.PotionAttack(magicPower);
-
-    }
 
 }

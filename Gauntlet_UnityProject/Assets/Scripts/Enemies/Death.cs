@@ -46,7 +46,7 @@ public class Death : Enemy
             yield return new WaitForSeconds(1);
         }
 
-        if (health <= 0) OnDefeat();
+        if (health <= 0) OnDefeat(player);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -63,10 +63,11 @@ public class Death : Enemy
         shot.gameObject.SetActive(false);
     }
 
-    public override void PotionAttack(float magicPower)
+    public override void PotionAttack(float magicPower, Player player)
     {
-        base.PotionAttack(magicPower);
+        //base.PotionAttack(magicPower);
 
+        OnDefeat(player, BonusScoreIncrease());
     }
 
 

@@ -43,17 +43,23 @@ public class Foe : MonoBehaviour
         player.score += score;
     }
 
-    public void ReduceHealth(float amount)
+    public void ReduceHealth(float amount, Player player)
     {
         health -= amount;
 
-        if (health <= 0) OnDefeat();
+        if (health <= 0) OnDefeat(player);
     }
 
-    public virtual void OnDefeat() => gameObject.SetActive(false);
-
-    public virtual void PotionAttack(float magicPower)
+    public virtual void OnDefeat(Player player, int score = 0)
     {
+        if (score == 0) score = scoreIncrease;
+        if (player != null) AddScore(player, score);
+        gameObject.SetActive(false);
+    }
 
+    public virtual void PotionAttack(float magicPower, Player player)
+    {
+        ReduceHealth(health * Mathf.InverseLerp(0.0f, 4.0f, magicPower), player);
+        if (health <= 0) OnDefeat(player);
     }
 }

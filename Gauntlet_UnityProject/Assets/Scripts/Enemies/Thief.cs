@@ -27,9 +27,9 @@ public class Thief : Enemy
         // if the thief has successfully robbed someone, they will go towards the exit obstacle
     }
 
-    public override void OnDefeat()
+    public override void OnDefeat(Player player, int score = 0)
     {
-        base.OnDefeat();
+        base.OnDefeat(player, score);
         if (itemHeld == ItemHeld.Potion)
         {
             GameObject potion = Instantiate((GameObject)Resources.Load("Prefabs/Pickups/Potion"));
