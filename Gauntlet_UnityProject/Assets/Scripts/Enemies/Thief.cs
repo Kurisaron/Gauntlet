@@ -21,14 +21,10 @@ public class Thief : Enemy
         shotAction = EnemyShot_Default;
         moveAction = Move;
 
+        GameEventBus.Subscribe(GameEvent.PlayerAdded, FindPlayer);
     }
 
-    protected override void Update()
-    {
-        if (targetPlayer == null) FindPlayer();
-        
-        base.Update();
-    }
+    
 
     private void FindPlayer()
     {
