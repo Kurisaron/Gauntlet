@@ -71,7 +71,7 @@ public class Lobber : Enemy
     {
         while (true)
         {
-            if (runningAway) continue;
+            if (runningAway || shootDirection == Vector3.zero) continue;
 
             foreach (GameObject projectile in lobberProjectiles)
             {

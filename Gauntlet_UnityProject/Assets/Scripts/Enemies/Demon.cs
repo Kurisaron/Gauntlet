@@ -61,6 +61,8 @@ public class Demon : Enemy
     {
         while (true)
         {
+            if (shootDirection == Vector3.zero) continue;
+            
             foreach (GameObject projectile in demonProjectiles)
             {
                 
