@@ -25,10 +25,12 @@ public class Potion : Pickup
 
     public void Explode()
     {
-        this.gameObject.SetActive(false);
+        gameObject.SetActive(false);
         /*TO-DO:
          * damage enemies based on what Thor's magic attack is
          */
+        PotionAttackManager.Instance.PotionHit(transform.position);
+
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -39,9 +41,14 @@ public class Potion : Pickup
             this.gameObject.SetActive(false);
         }
 
-        //TO-DO:
-        //if isDestructable is true and collision.gameObject is a projectile, GameEventBus.Publish(GameEventBus.ShotPotion)
     }
 
-
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.transform.parent.name.Contains("Shot"))
+        {
+            other.gameObject.SetActive(false);
+            Explode();
+        }
+    }
 }

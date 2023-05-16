@@ -24,5 +24,10 @@ public class Door : MonoBehaviour
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.transform.parent.name.Contains("Shot")) other.gameObject.SetActive(false);
+    }
+
     private void Unlock() => gameObject.SetActive(false);
 }

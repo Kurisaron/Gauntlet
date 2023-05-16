@@ -6,7 +6,7 @@ public class Lobber : Enemy
 {
     [SerializeField] private GameObject lobberProjectile;
     private List<GameObject> lobberProjectiles = new List<GameObject>();
-    private bool runningAway = false;
+    public bool runningAway = false;
     private Vector3 shootDirection;
     
     private void Awake()
@@ -45,17 +45,24 @@ public class Lobber : Enemy
             //Debug.Log(Vector3.Distance(target.transform.position, transform.position));
 
             shootDirection = (target.transform.position - transform.position).normalized;
-            runningAway = Vector3.Distance(target.transform.position, transform.position) < 3.0f;
-            if (runningAway) RunAway(target);
-            else RunTowards(target);
-            
+            bool isRunningAway = Vector3.Distance(target.transform.position, transform.position) < 3.0f;
+            if (isRunningAway)
+            {
+                RunAway(target);
+                runningAway = true; // Set the flag to true when running away
+            }
+            else
+            {
+                RunTowards(target);
+                runningAway = false; // Set the flag to false when not running away
+            }
         }
     }
 
     private void RunAway(Player target)
     {
         //Debug.Log("Lobber Running Away");
-        if (Vector3.Distance(transform.position, target.transform.position) - 3.0f <= 0.25f) return;
+        //Debug.Log(Vector3.Distance(target.transform.position, transform.position));
 
         transform.position += speed * Time.deltaTime * (transform.position - target.transform.position);
     }
@@ -71,7 +78,11 @@ public class Lobber : Enemy
     {
         while (true)
         {
-            if (runningAway || shootDirection == Vector3.zero) continue;
+            if (runningAway || shootDirection == Vector3.zero)
+            {
+                yield return null;
+                continue;
+            }
 
             foreach (GameObject projectile in lobberProjectiles)
             {

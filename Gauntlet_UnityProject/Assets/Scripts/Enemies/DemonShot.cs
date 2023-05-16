@@ -6,7 +6,12 @@ public class DemonShot : MonoBehaviour
 {
     [SerializeField] private int damage = 10;
     public Vector3 moveDirection;
-    
+
+    private void OnEnable()
+    {
+        this.transform.parent = null;
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.name == "Wall")

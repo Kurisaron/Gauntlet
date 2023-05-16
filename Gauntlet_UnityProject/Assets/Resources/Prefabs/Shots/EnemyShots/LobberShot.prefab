@@ -45,6 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+  moveDirection: {x: 0, y: 0, z: 0}
 --- !u!1 &7040587827864290956
 GameObject:
   m_ObjectHideFlags: 0

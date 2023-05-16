@@ -36,7 +36,7 @@ public class Wall : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.transform.parent.name.Contains("Shot")) other.gameObject.SetActive(false);
+        if (other.gameObject.transform.parent.name.Contains("Shot")) other.transform.parent.gameObject.SetActive(false);
     }
 
 

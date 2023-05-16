@@ -61,29 +61,33 @@ public class Demon : Enemy
     {
         while (true)
         {
-            if (shootDirection == Vector3.zero) continue;
-            
+            if (shootDirection == Vector3.zero)
+            {
+                yield return null;
+                continue;
+            }
+
             foreach (GameObject projectile in demonProjectiles)
             {
-                
                 GameObject shot = ObjectPooler.Instance.GetPooledObject(demonProjectile.name);
                 shot.transform.parent = null;
                 float timeAlive = 0.0f;
 
                 shot.transform.SetPositionAndRotation(transform.position, transform.rotation);
                 shot.GetComponent<DemonShot>().moveDirection = shootDirection;
-                
-                while(timeAlive <= 2.0f)
+
+                while (timeAlive <= 2.0f)
                 {
                     shot.SetActive(true);
                     timeAlive += Time.deltaTime;
                     yield return null;
                 }
-                shot.SetActive(false);
-            }
 
+                shot.SetActive(false); 
+            }
         }
     }
+
 
     private void OnCollisionEnter(Collision collision)
     {

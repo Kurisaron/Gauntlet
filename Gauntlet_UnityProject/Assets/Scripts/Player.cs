@@ -91,6 +91,7 @@ public class Player : MonoBehaviour
         while (timeAlive < 3.0f)
         {
             shot.transform.position += shot.transform.forward * Time.deltaTime * 10.0f;
+            shot.SetActive(true);
             timeAlive += Time.deltaTime;
             yield return null;
         }
@@ -241,6 +242,11 @@ public class Player : MonoBehaviour
             sum += upgrade.MoveSpeed;
         }
         return sum;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.transform.parent.name.Contains("Shot")) other.transform.parent.gameObject.SetActive(false);
     }
 
 }

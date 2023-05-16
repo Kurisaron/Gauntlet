@@ -38,4 +38,13 @@ public class Food : Pickup
             this.gameObject.SetActive(false);
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.transform.parent.name.Contains("Shot"))
+        {
+            other.gameObject.SetActive(false);
+            gameObject.SetActive(false);
+        }
+    }
 }

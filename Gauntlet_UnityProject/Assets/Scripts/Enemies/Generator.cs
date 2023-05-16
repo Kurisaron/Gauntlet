@@ -68,6 +68,7 @@ public class Generator : Foe
     {
         ReduceHealth(shot.shooter.ShotPower, shot.shooter);
         level--;
+        shot.gameObject.SetActive(false);
     }
 
 }
