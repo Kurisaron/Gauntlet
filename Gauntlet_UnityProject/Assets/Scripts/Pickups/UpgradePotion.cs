@@ -9,7 +9,7 @@ public class UpgradePotion : Potion
     
     private void OnEnable()
     {
-        //GetRandomUpgrade();
+        GetRandomUpgrade();
         GameEventBus.Subscribe(GameEvent.ShotPotion, Explode);
     }
     private void OnDisable()
@@ -29,6 +29,8 @@ public class UpgradePotion : Potion
             if (upgrade.name.Contains("shotSpeed")) GetComponent<Renderer>().material.color = Color.black;
             if (upgrade.name.Contains("move")) GetComponent<Renderer>().material.color = Color.green;
         }
+
+        Debug.Log(upgrade);
     }
 
     public override void OnPickUp(Player player)
