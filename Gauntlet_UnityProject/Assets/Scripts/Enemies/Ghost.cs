@@ -8,6 +8,7 @@ public class Ghost : Enemy
     {
         //triggerAction = GhostTrigger;
         shotAction = EnemyShot_Default;
+        moveAction = Move;
     }
 
     public override void AssignStats()

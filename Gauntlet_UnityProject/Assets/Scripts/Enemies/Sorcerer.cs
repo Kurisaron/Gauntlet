@@ -8,6 +8,7 @@ public class Sorcerer : Enemy
     {
         //triggerAction = SorcererTrigger;
         shotAction = EnemyShot_Default;
+        moveAction = Move;
     }
 
     private void OnEnable()

@@ -11,6 +11,7 @@ public class Death : Enemy
     {
         //triggerAction = DeathTrigger;
         shotAction = DeathShot;
+        moveAction = Move;
     }
 
     public void AddScore(Player player, bool hitByPotion)

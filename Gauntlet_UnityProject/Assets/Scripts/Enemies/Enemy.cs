@@ -9,11 +9,12 @@ public abstract class Enemy : Foe
     public int damage;
     public float detectionRadius;
     public float speed;
+    public Action moveAction;
 
     //FUNCTIONS
     protected virtual void Update()
     {
-        Move();
+        moveAction?.Invoke();
     }
 
     public void Attack(Player player) => player.currentHealth -= damage;

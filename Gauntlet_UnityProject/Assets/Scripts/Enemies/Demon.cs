@@ -11,6 +11,7 @@ public class Demon : Enemy
     {
         //triggerAction = DemonTrigger;
         shotAction = EnemyShot_Default;
+        moveAction = Move;
     }
 
     private void OnEnable()

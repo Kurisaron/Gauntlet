@@ -17,6 +17,7 @@ public class Thief : Enemy
     private void OnEnable()
     {
         shotAction = EnemyShot_Default;
+        moveAction = Move;
     }
 
     public override void Move()

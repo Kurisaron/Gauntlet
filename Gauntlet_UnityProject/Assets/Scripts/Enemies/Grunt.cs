@@ -8,6 +8,7 @@ public class Grunt : Enemy
     {
         //triggerAction = GruntTrigger;
         shotAction = EnemyShot_Default;
+        moveAction = Move;
     }
 
     private void OnEnable()
