@@ -35,7 +35,7 @@ public class Thief : Enemy
 
     public override void Move()
     {
-        if (targetPlayer == null) OnDefeat(null);
+        if (targetPlayer == null) return;
 
         if (!itemStolen)
         {
