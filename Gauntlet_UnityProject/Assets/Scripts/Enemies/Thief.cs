@@ -21,11 +21,22 @@ public class Thief : Enemy
         shotAction = EnemyShot_Default;
         moveAction = Move;
 
+    }
+
+    protected override void Update()
+    {
+        if (targetPlayer == null) FindPlayer();
+        
+        base.Update();
+    }
+
+    private void FindPlayer()
+    {
         int mostItems = 0;
-        foreach(Player player in GameManager.Instance.players)
+        foreach (Player player in GameManager.Instance.players)
         {
             if (player == null) continue;
-            
+
             if (player.keysHeld + player.potionsHeld + player.upgrades.Count > mostItems)
             {
                 mostItems = player.keysHeld + player.potionsHeld + player.upgrades.Count;
